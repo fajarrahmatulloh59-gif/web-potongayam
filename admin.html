@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Daftar Pesanan</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="admin-page">
+    <header>
+        <h1>Halaman Admin</h1>
+        <nav>
+            <a href="index.html">Kembali ke Toko</a>
+        </nav>
+    </header>
+
+    <main id="admin-main">
+        <section id="order-list-section">
+            <h2>Daftar Pesanan</h2>
+            <div id="filter-status">
+                <label for="status-filter">Filter Status:</label>
+                <select id="status-filter">
+                    <option value="all">Semua</option>
+                    <option value="pending">Pending</option>
+                    <option value="completed">Selesai</option>
+                    <option value="cancelled">Dibatalkan</option>
+                </select>
+            </div>
+            <div id="orders-container">
+                <!-- Orders will be loaded here -->
+                <p>Memuat pesanan...</p>
+            </div>
+        </section>
+
+        <section id="monthly-summary-section">
+            <h2>Ringkasan Bulanan</h2>
+            <div id="summary-container">
+                <!-- Monthly summary will be loaded here -->
+                <p>Memuat ringkasan...</p>
+            </div>
+        </section>
+    </main>
+
+    <script src="admin.js"></script>
+</body>
+</html>

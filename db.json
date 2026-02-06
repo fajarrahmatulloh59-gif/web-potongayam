@@ -1,0 +1,8 @@
+{
+  "orders": [],
+  "products": [
+    { "id": 1, "nama": "Ayam Utuh", "hargaPerKg": 35000, "gambar": "https://plus.unsplash.com/premium_photo-1675713823483-3a990a4697fb?q=80&w=1887&auto=format&fit=crop" },
+    { "id": 2, "nama": "Dada Ayam Fillet", "hargaPerKg": 48000, "gambar": "https://images.unsplash.com/photo-1606728035253-49e8a23146de?q=80&w=1887&auto=format&fit=crop" },
+    { "id": 2, "nama": "Dada Ayam Fillet", "hargaPerKg": 48000, "gambar": "https://images.unsplash.com/photo-1606728035253-49e8a23146de?q=80&w=1887&auto=format&fit=crop" }
+  ]
+}

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jual Ayam Potong</title>
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <section id="hero">
+        <div class="swiper-container hero-slider">
+            <div class="swiper-wrapper">
+                </div>
+        </div>
+    </section>
+
+    <section id="produk">
+        <h2>Produk Kami</h2>
+        <div class="swiper-container produk-slider">
+            <div class="swiper-wrapper">
+                </div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+        </div>
+    </section>
+
+    <section id="pembelian">
+        <h2>Form Pemesanan</h2>
+        <form id="form-pembelian">
+            <label for="nama">Nama:</label>
+            <input type="text" id="nama" name="nama" required>
+            <label for="no-telp">No. Telepon:</label>
+            <input type="tel" id="no-telp" name="no-telp" required>
+            <label for="location">Alamat Lengkap:</label>
+            <input type="text" id="location" name="location" placeholder="Ketik alamat lengkap Anda..." required>
+            <iframe id="mapPreview" width="100%" height="300" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0" class="hidden"></iframe>
+        </form>
+
+        <hr>
+
+        <h2>Daftar Produk</h2>
+        <!-- Product selection moved here for clarity if only one product is available, or can remain above -->
+        <label for="product-select">Pilih Produk:</label>
+        <select id="product-select" name="product-select" required>
+            <option value="">-- Pilih Produk --</option>
+        </select>
+
+        <label for="weight-select" id="weight-label" class="hidden">Pilih Berat:</label>
+        <select id="weight-select" name="weight-select" class="hidden" required>
+            <option value="">-- Pilih Berat --</option>
+        </select>
+
+        <div id="price-display" class="hidden">
+            <p>Harga: <span id="current-price">Rp 0</span></p>
+        </div>
+        <button type="button" id="btn-add-to-cart">Tambah ke Keranjang</button>
+
+        <hr>
+
+        <h2>Keranjang Belanja</h2>
+        <div id="cart-items">
+            <!-- Cart items will be dynamically added here by script.js -->
+            <p>Keranjang kosong.</p>
+        </div>
+        <p><strong>Total Belanja: <span id="cart-total">Rp 0</span></strong></p>
+        <button type="button" id="btn-finish-order" disabled>Selesai</button>
+        <button type="button" id="btn-clear-cart" disabled>Batalkan</button>
+    </section>
+
+    <div id="order-summary" class="hidden">
+        <div class="summary-content">
+            <h2>Rincian Pesanan</h2>
+            <p id="summary-nama"></p>
+            <p id="summary-no-telp"></p>
+            <p id="summary-alamat"></p>
+            <p id="summary-lokasi"></p>
+            <h3>Produk yang Dipesan:</h3>
+            <ul id="summary-produk"></ul>
+            <p id="summary-total"></p>
+            <button id="btn-whatsapp">Lanjutkan pesan via WhatsApp</button>
+            <button id="btn-batal">Batalkan Pesanan</button>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
