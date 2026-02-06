@@ -31,9 +31,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const nomorPenjual = '6285719480646'; // Ganti dengan nomor WhatsApp penjual Anda
 
     const heroImages = [
-        { url: 'bg 1.jpg', title: 'Selamat Datang di Jual Ayam Potong', subtitle: 'Kami menyediakan ayam potong segar dan berkualitas' },
-        { url: 'bg 4.avif', title: 'Berbagai Macam Pilihan', subtitle: 'Tersedia ayam utuh, dada, paha, dan sayap' },
-        { url: 'bg 3.webp', title: 'Praktis dan Hemat', subtitle: 'Pesan sekarang, kami antar ke rumah Anda' }
+        { url: 'web img/bg 1.jpg', title: 'Selamat Datang di Jual Ayam Potong', subtitle: 'Kami menyediakan ayam potong segar dan berkualitas' },
+        { url: 'web img/bg 2.jpg', title: 'Berbagai Macam Pilihan', subtitle: 'Tersedia ayam utuh, dada, paha, dan sayap' },
+        { url: 'web img/bg 3.webp', title: 'Praktis dan Hemat', subtitle: 'Pesan sekarang, kami antar ke rumah Anda' }
     ];
 
     async function fetchProducts() {

@@ -1,8 +1,10 @@
 {
   "orders": [],
   "products": [
-    { "id": 1, "nama": "Ayam Utuh", "hargaPerKg": 35000, "gambar": "https://plus.unsplash.com/premium_photo-1675713823483-3a990a4697fb?q=80&w=1887&auto=format&fit=crop" },
-    { "id": 2, "nama": "Dada Ayam Fillet", "hargaPerKg": 48000, "gambar": "https://images.unsplash.com/photo-1606728035253-49e8a23146de?q=80&w=1887&auto=format&fit=crop" },
-    { "id": 2, "nama": "Dada Ayam Fillet", "hargaPerKg": 48000, "gambar": "https://images.unsplash.com/photo-1606728035253-49e8a23146de?q=80&w=1887&auto=format&fit=crop" }
+    { "id": 1, "nama": "Ayam Utuh", "hargaPerKg": 35000, "gambar": "web img/ayam utuh.png" },
+    { "id": 2, "nama": "Dada Ayam Fillet", "hargaPerKg": 48000, "gambar": "web img/fillet dada.jpg" },
+    { "id": 3, "nama": "Paha Utuh", "hargaPerKg": 48000, "gambar": "web img/paha utuh.jpg" },
+    { "id": 4, "nama": "Paha Pentung", "hargaPerKg": 48000, "gambar": "web img/paha pentung.webp" },
+    { "id": 5, "nama": "Sayap", "hargaPerKg": 48000, "gambar": "web img/sayap.jpg" }
   ]
 }
