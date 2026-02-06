@@ -38,8 +38,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     async function fetchProducts() {
         try {
-            const response = await fetch('http://localhost:3000/products');
-            allProducts = await response.json();
+            const response = await fetch('/db.json');
+            const data = await response.json();
+            allProducts = data.products;
             renderProdukSlider();
             populateProductSelect();
             updatePriceDisplay(); // Initial price display after products are loaded
