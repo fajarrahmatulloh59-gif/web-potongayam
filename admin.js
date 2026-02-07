@@ -18,9 +18,62 @@ document.addEventListener('DOMContentLoaded', () => {
     const summaryContainer = document.getElementById('summary-container');
     const statusFilter = document.getElementById('status-filter');
 
-
+    // Auth related elements
+    const authContainer = document.getElementById('auth-container');
+    const adminEmailInput = document.getElementById('admin-email');
+    const adminPasswordInput = document.getElementById('admin-password');
+    const loginBtn = document.getElementById('login-btn');
+    const authErrorMessage = document.getElementById('auth-error-message');
+    const adminContentDiv = document.getElementById('admin-content');
+    const logoutBtn = document.getElementById('logout-btn');
 
     let allOrders = [];
+
+    // Firebase Auth instance
+    const auth = firebase.auth();
+
+    // Login Function
+    loginBtn.addEventListener('click', async () => {
+        const email = adminEmailInput.value;
+        const password = adminPasswordInput.value;
+
+        try {
+            await auth.signInWithEmailAndPassword(email, password);
+            authErrorMessage.textContent = ''; // Clear any previous errors
+        } catch (error) {
+            console.error('Login Error:', error);
+            authErrorMessage.textContent = `Login Gagal: ${error.message}`;
+        }
+    });
+
+    // Logout Function
+    logoutBtn.addEventListener('click', async () => {
+        try {
+            await auth.signOut();
+        } catch (error) {
+            console.error('Logout Error:', error);
+            alert('Gagal logout.');
+        }
+    });
+
+    // Auth State Observer
+    auth.onAuthStateChanged(user => {
+        if (user) {
+            // User is signed in
+            authContainer.classList.add('hidden');
+            adminContentDiv.classList.remove('hidden');
+            logoutBtn.classList.remove('hidden');
+            authErrorMessage.textContent = ''; // Clear error message on successful login
+            fetchOrders(); // Fetch orders only when logged in
+        } else {
+            // User is signed out
+            authContainer.classList.remove('hidden');
+            adminContentDiv.classList.add('hidden');
+            logoutBtn.classList.add('hidden');
+            adminEmailInput.value = '';
+            adminPasswordInput.value = '';
+        }
+    });
 
     async function fetchOrders() {
         try {
@@ -157,7 +210,4 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Event Listener for status filter
     statusFilter.addEventListener('change', renderOrders);
-
-    // Initial fetch
-    fetchOrders();
 });

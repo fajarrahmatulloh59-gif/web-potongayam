@@ -422,7 +422,7 @@ hr {
     .summary-content {
         max-width: calc(100% - 2rem); /* Add side margins for better mobile fit */
         width: 100%; /* Ensure it respects max-width */
-        padding: 1.5rem; /* Adjust padding */
+        padding: 1rem; /* Adjust padding to be smaller */
         margin: 2rem auto; /* Center horizontally and add top/bottom margin */
     }
 

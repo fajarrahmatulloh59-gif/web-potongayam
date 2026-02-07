@@ -11,38 +11,50 @@
         <h1>Halaman Admin</h1>
         <nav>
             <a href="index.html">Kembali ke Toko</a>
+            <button id="logout-btn" class="hidden">Logout</button>
         </nav>
     </header>
 
-    <main id="admin-main">
-        <section id="order-list-section">
-            <h2>Daftar Pesanan</h2>
-            <div id="filter-status">
-                <label for="status-filter">Filter Status:</label>
-                <select id="status-filter">
-                    <option value="all">Semua</option>
-                    <option value="pending">Pending</option>
-                    <option value="completed">Selesai</option>
-                    <option value="cancelled">Dibatalkan</option>
-                </select>
-            </div>
-            <div id="orders-container">
-                <!-- Orders will be loaded here -->
-                <p>Memuat pesanan...</p>
-            </div>
-        </section>
+    <div id="auth-container">
+        <h2>Login Admin</h2>
+        <input type="email" id="admin-email" placeholder="Email" required>
+        <input type="password" id="admin-password" placeholder="Password" required>
+        <button id="login-btn">Login</button>
+        <p id="auth-error-message" style="color: red;"></p>
+    </div>
 
-        <section id="monthly-summary-section">
-            <h2>Ringkasan Bulanan</h2>
-            <div id="summary-container">
-                <!-- Monthly summary will be loaded here -->
-                <p>Memuat ringkasan...</p>
-            </div>
-        </section>
-    </main>
+    <div id="admin-content" class="hidden">
+        <main id="admin-main">
+            <section id="order-list-section">
+                <h2>Daftar Pesanan</h2>
+                <div id="filter-status">
+                    <label for="status-filter">Filter Status:</label>
+                    <select id="status-filter">
+                        <option value="all">Semua</option>
+                        <option value="pending">Pending</option>
+                        <option value="completed">Selesai</option>
+                        <option value="cancelled">Dibatalkan</option>
+                    </select>
+                </div>
+                <div id="orders-container">
+                    <!-- Orders will be loaded here -->
+                    <p>Memuat pesanan...</p>
+                </div>
+            </section>
+
+            <section id="monthly-summary-section">
+                <h2>Ringkasan Bulanan</h2>
+                <div id="summary-container">
+                    <!-- Monthly summary will be loaded here -->
+                    <p>Memuat ringkasan...</p>
+                </div>
+            </section>
+        </main>
+    </div>
 
     <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-auth.js"></script>
     <script src="admin.js"></script>
 </body>
 </html>
