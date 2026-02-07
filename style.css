@@ -379,7 +379,7 @@ hr {
 
     /* Product Slider adjustments */
     .produk-slider {
-        padding: 0 10px; /* Reduce padding for slider */
+        padding: 0 5px; /* Reduce padding for slider on small screens */
     }
     .produk-item {
         width: 100%; /* Make product items take full width */
@@ -415,7 +415,7 @@ hr {
     /* Order Summary specific adjustments */
     #order-summary {
         padding: 1rem;
-        align-items: flex-start; /* Align summary content to top */
+        align-items: center; /* Align summary content to center */
         overflow-y: auto; /* Allow scrolling for long summaries */
     }
 
