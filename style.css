@@ -1,4 +1,4 @@
-body {
+html, body {
     font-family: sans-serif;
     margin: 0;
     overflow-x: hidden; /* Mencegah overflow horizontal */
@@ -725,7 +725,7 @@ header nav a:hover {
 
     /* Product Slider adjustments */
     .produk-slider {
-        padding: 0 10px;
+        padding: 0 15px; /* Reduced padding for tablets */
     }
 
     /* Order form adjustments */
@@ -757,6 +757,11 @@ header nav a:hover {
     .summary-content h3 {
         font-size: 1.4em;
     }
+
+    /* Product Slider adjustments */
+    .produk-slider {
+        padding: 0 20px;
+    }
 }
 
 /* -------------------------------------------------------------------------- */
@@ -786,7 +791,7 @@ header nav a:hover {
 
     /* Product Slider adjustments */
     .produk-slider {
-        padding: 0 5px;
+        padding: 0 15px;
     }
     .produk-item {
         width: 100%;
@@ -855,7 +860,7 @@ header nav a:hover {
 
     /* Product Slider adjustments */
     .produk-slider {
-        padding: 0 5px;
+        padding: 0 10px;
     }
     .produk-item {
         width: 100%;
