@@ -285,21 +285,7 @@ document.addEventListener('DOMContentLoaded', () => {
             status: 'pending'
         };
 
-        fetch('http://localhost:3000/orders', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(orderData),
-        })
-        .then(response => response.json())
-        .then(data => {
-            console.log('Order saved to db.json:', data);
-        })
-        .catch((error) => {
-            console.error('Error saving order to db.json:', error);
-            alert('Terjadi kesalahan saat menyimpan pesanan.');
-        });
+
 
         try {
             const docRef = await db.collection('orders').add(orderData);
