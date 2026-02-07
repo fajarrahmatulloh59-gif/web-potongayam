@@ -439,6 +439,25 @@ hr {
         padding: 0.6rem 1rem;
         font-size: 0.9em;
     }
+
+    /* Order Card specific adjustments for mobile */
+    .order-card ul li {
+        flex-direction: column; /* Stack product name and price */
+        align-items: flex-start;
+        padding: 0.5rem;
+    }
+    .order-card ul li span { /* Adjust spacing for stacked items */
+        margin-bottom: 0.2rem;
+    }
+
+    .order-actions {
+        flex-direction: column; /* Stack action buttons/select */
+        gap: 0.5rem;
+    }
+    .order-actions select,
+    .order-actions button {
+        width: 100%; /* Make them take full width */
+    }
 }
 
 /* General Admin Layout */
