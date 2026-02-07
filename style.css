@@ -420,10 +420,10 @@ hr {
     }
 
     .summary-content {
-        max-width: 100%; /* Allow summary to take full width */
-        width: 100%; /* Ensure it takes 100% available width */
+        max-width: calc(100% - 2rem); /* Add side margins for better mobile fit */
+        width: 100%; /* Ensure it respects max-width */
         padding: 1.5rem; /* Adjust padding */
-        margin-top: 2rem; /* Give some space from the top */
+        margin: 2rem auto; /* Center horizontally and add top/bottom margin */
     }
 
     .summary-content h2 {
