@@ -1,22 +1,40 @@
+// Your web app's Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyB8CCXXYrXjGTsycpkL1K5TQqZ28Eg8TWI",
+  authDomain: "apk-web-potongayam.firebaseapp.com",
+  projectId: "apk-web-potongayam",
+  storageBucket: "apk-web-potongayam.firebasestorage.app",
+  messagingSenderId: "484675773409",
+  appId: "1:484675773409:web:42ea16fad78b62a230a8a0",
+  measurementId: "G-3M8ZTMPDP7"
+};
+
+// Initialize Firebase
+const app = firebase.initializeApp(firebaseConfig);
+const db = app.firestore(); // Get Firestore instance
+
 document.addEventListener('DOMContentLoaded', () => {
     const ordersContainer = document.getElementById('orders-container');
     const summaryContainer = document.getElementById('summary-container');
     const statusFilter = document.getElementById('status-filter');
 
-    const JSON_SERVER_URL = 'http://localhost:3000/orders';
+
 
     let allOrders = [];
 
     async function fetchOrders() {
         try {
-            const response = await fetch(JSON_SERVER_URL);
-            allOrders = await response.json();
+            const snapshot = await db.collection('orders').get();
+            allOrders = snapshot.docs.map(doc => ({
+                id: doc.id,
+                ...doc.data()
+            }));
             renderOrders();
             renderMonthlySummary();
         } catch (error) {
-            console.error('Error fetching orders:', error);
-            ordersContainer.innerHTML = '<p>Gagal memuat pesanan.</p>';
-            summaryContainer.innerHTML = '<p>Gagal memuat ringkasan.</p>';
+            console.error('Error fetching orders from Firestore:', error);
+            ordersContainer.innerHTML = '<p>Gagal memuat pesanan dari Firestore.</p>';
+            summaryContainer.innerHTML = '<p>Gagal memuat ringkasan dari Firestore.</p>';
         }
     }
 
@@ -85,29 +103,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
     async function updateOrderStatus(orderId, newStatus) {
         try {
-            await fetch(`${JSON_SERVER_URL}/${orderId}`, {
-                method: 'PATCH',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ status: newStatus }),
-            });
+            await db.collection('orders').doc(orderId).update({ status: newStatus });
             await fetchOrders(); // Re-fetch and re-render orders
         } catch (error) {
-            console.error('Error updating order status:', error);
-            alert('Gagal memperbarui status pesanan.');
+            console.error('Error updating order status in Firestore:', error);
+            alert('Gagal memperbarui status pesanan di Firestore.');
         }
     }
 
     async function deleteOrder(orderId) {
         try {
-            await fetch(`${JSON_SERVER_URL}/${orderId}`, {
-                method: 'DELETE',
-            });
+            await db.collection('orders').doc(orderId).delete();
             await fetchOrders(); // Re-fetch and re-render orders
         } catch (error) {
-            console.error('Error deleting order:', error);
-            alert('Gagal menghapus pesanan.');
+            console.error('Error deleting order from Firestore:', error);
+            alert('Gagal menghapus pesanan dari Firestore.');
         }
     }
 
