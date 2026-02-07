@@ -1,3 +1,18 @@
+// Your web app's Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyB8CCXXYrXjGTsycpkL1K5TQqZ28Eg8TWI",
+  authDomain: "apk-web-potongayam.firebaseapp.com",
+  projectId: "apk-web-potongayam",
+  storageBucket: "apk-web-potongayam.firebasestorage.app",
+  messagingSenderId: "484675773409",
+  appId: "1:484675773409:web:42ea16fad78b62a230a8a0",
+  measurementId: "G-3M8ZTMPDP7"
+};
+
+// Initialize Firebase
+const app = firebase.initializeApp(firebaseConfig);
+const db = app.firestore(); // Get Firestore instance
+
 document.addEventListener('DOMContentLoaded', () => {
     const heroSlider = document.querySelector('.hero-slider .swiper-wrapper');
     const produkSlider = document.querySelector('.produk-slider .swiper-wrapper');
@@ -38,15 +53,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
     async function fetchProducts() {
         try {
-            const response = await fetch('/db.json');
-            const data = await response.json();
-            allProducts = data.products;
+            const productsSnapshot = await db.collection('products').get();
+            allProducts = productsSnapshot.docs.map(doc => ({
+                id: doc.id, // Menggunakan ID dokumen Firestore
+                ...doc.data() // Menggabungkan data produk
+            }));
             renderProdukSlider();
             populateProductSelect();
-            updatePriceDisplay(); // Initial price display after products are loaded
+            updatePriceDisplay();
         } catch (error) {
-            console.error('Error fetching products:', error);
-            alert('Gagal memuat daftar produk.');
+            console.error('Error fetching products from Firestore:', error);
+            alert('Gagal memuat daftar produk dari Firestore.');
         }
     }
 
@@ -218,7 +235,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    btnFinishOrder.addEventListener('click', () => {
+    btnFinishOrder.addEventListener('click', async () => {
         const nama = document.getElementById('nama').value.trim();
         const noTelp = document.getElementById('no-telp').value.trim();
         const alamat = locationInput.value.trim();
@@ -283,6 +300,14 @@ document.addEventListener('DOMContentLoaded', () => {
             console.error('Error saving order to db.json:', error);
             alert('Terjadi kesalahan saat menyimpan pesanan.');
         });
+
+        try {
+            const docRef = await db.collection('orders').add(orderData);
+            console.log('Order saved to Firestore with ID:', docRef.id);
+        } catch (error) {
+            console.error('Error saving order to Firestore:', error);
+            alert('Terjadi kesalahan saat menyimpan pesanan ke database.');
+        }
 
         orderSummary.classList.remove('hidden');
     });

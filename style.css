@@ -353,7 +353,93 @@ hr {
 .hidden {
     display: none;
 }
-/* Admin Page Specific Styles - Enhanced Professional Look */
+
+/* Responsiveness for general layout and key sections */
+@media (max-width: 768px) {
+    body {
+        font-size: 14px; /* Slightly smaller base font for mobile */
+    }
+
+    /* Adjust padding for main sections */
+    #produk, #pembelian {
+        padding: 2rem 1rem; /* Reduce horizontal padding */
+    }
+
+    /* Hero section content */
+    .hero-content {
+        max-width: 95%; /* Allow hero content to take more width */
+        padding: 1rem;
+    }
+    .hero-content h1 {
+        font-size: 1.8em;
+    }
+    .hero-content p {
+        font-size: 0.9em;
+    }
+
+    /* Product Slider adjustments */
+    .produk-slider {
+        padding: 0 10px; /* Reduce padding for slider */
+    }
+    .produk-item {
+        width: 100%; /* Make product items take full width */
+        max-width: 300px; /* Limit max width for readability */
+        margin: 0 auto; /* Center items */
+    }
+
+    /* Order form adjustments */
+    #form-pembelian {
+        padding: 0 1rem;
+    }
+    #form-pembelian input,
+    #form-pembelian textarea,
+    #pembelian select,
+    #form-pembelian button,
+    #pembelian button {
+        width: calc(100% - 1rem); /* Account for padding */
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    /* Cart items */
+    .cart-item {
+        flex-direction: column; /* Stack item details and remove button */
+        align-items: flex-start;
+    }
+    .cart-item .remove-from-cart {
+        margin-top: 0.5rem;
+        margin-left: 0;
+        width: auto;
+    }
+
+    /* Order Summary specific adjustments */
+    #order-summary {
+        padding: 1rem;
+        align-items: flex-start; /* Align summary content to top */
+        overflow-y: auto; /* Allow scrolling for long summaries */
+    }
+
+    .summary-content {
+        max-width: 100%; /* Allow summary to take full width */
+        width: 100%; /* Ensure it takes 100% available width */
+        padding: 1.5rem; /* Adjust padding */
+        margin-top: 2rem; /* Give some space from the top */
+    }
+
+    .summary-content h2 {
+        font-size: 1.5em;
+    }
+    .summary-content h3 {
+        font-size: 1.2em;
+    }
+    .summary-content p, .summary-content ul li {
+        font-size: 0.9em;
+    }
+    .summary-content button {
+        padding: 0.6rem 1rem;
+        font-size: 0.9em;
+    }
+}
 
 /* General Admin Layout */
 body.admin-page {

@@ -1,0 +1,24 @@
+{
+  "name": "web-ayam-potong",
+  "version": "1.0.0",
+  "description": "",
+  "main": "admin.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fajarrahmatulloh59-gif/web-potongayam.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/fajarrahmatulloh59-gif/web-potongayam/issues"
+  },
+  "homepage": "https://github.com/fajarrahmatulloh59-gif/web-potongayam#readme",
+  "dependencies": {
+    "firebase-admin": "^13.6.1"
+  }
+}
