@@ -8,10 +8,10 @@
 </head>
 <body class="admin-page">
     <header>
+        <button id="sidebar-toggle-btn" class="hidden">☰</button>
         <h1>Halaman Admin</h1>
         <nav>
             <a href="index.html">Kembali ke Toko</a>
-            <button id="logout-btn" class="hidden">Logout</button>
         </nav>
     </header>
 
@@ -23,32 +23,50 @@
         <p id="auth-error-message" style="color: red;"></p>
     </div>
 
-    <div id="admin-content" class="hidden">
-        <main id="admin-main">
-            <section id="order-list-section">
-                <h2>Daftar Pesanan</h2>
-                <div id="filter-status">
-                    <label for="status-filter">Filter Status:</label>
-                    <select id="status-filter">
-                        <option value="all">Semua</option>
-                        <option value="pending">Pending</option>
-                        <option value="completed">Selesai</option>
-                        <option value="cancelled">Dibatalkan</option>
-                    </select>
-                </div>
-                <div id="orders-container">
-                    <!-- Orders will be loaded here -->
-                    <p>Memuat pesanan...</p>
-                </div>
-            </section>
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>Admin Panel</h2>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li><a href="#" id="nav-orders">Daftar Pesanan</a></li>
+                    <li><a href="#" id="nav-summary">Ringkasan Bulanan</a></li>
+                    <!-- Add more navigation items here if needed -->
+                </ul>
+            </nav>
+            <div class="sidebar-footer">
+                <button id="logout-btn-sidebar" class="logout-btn-sidebar hidden">Logout</button>
+            </div>
+        </aside>
 
-            <section id="monthly-summary-section">
-                <h2>Ringkasan Bulanan</h2>
-                <div id="summary-container">
-                    <!-- Monthly summary will be loaded here -->
-                    <p>Memuat ringkasan...</p>
-                </div>
-            </section>
+        <main class="dashboard-main-content">
+            <div id="admin-content" class="hidden">
+                <section id="order-list-section">
+                    <h2>Daftar Pesanan</h2>
+                    <div id="filter-status">
+                        <label for="status-filter">Filter Status:</label>
+                        <select id="status-filter">
+                            <option value="all">Semua</option>
+                            <option value="pending">Pending</option>
+                            <option value="completed">Selesai</option>
+                            <option value="cancelled">Dibatalkan</option>
+                        </select>
+                    </div>
+                    <div id="orders-container">
+                        <!-- Orders will be loaded here -->
+                        <p>Memuat pesanan...</p>
+                    </div>
+                </section>
+
+                <section id="monthly-summary-section">
+                    <h2>Ringkasan Bulanan</h2>
+                    <div id="summary-container">
+                        <!-- Monthly summary will be loaded here -->
+                        <p>Memuat ringkasan...</p>
+                    </div>
+                </section>
+            </div>
         </main>
     </div>
 
@@ -78,6 +96,31 @@
             const summaryContainer = document.getElementById('summary-container');
             const statusFilter = document.getElementById('status-filter');
 
+            // Sidebar Navigation
+            const navOrders = document.getElementById('nav-orders');
+            const navSummary = document.getElementById('nav-summary');
+            const orderListSection = document.getElementById('order-list-section');
+            const monthlySummarySection = document.getElementById('monthly-summary-section');
+
+            function showSection(sectionToShow) {
+                orderListSection.classList.add('hidden');
+                monthlySummarySection.classList.add('hidden');
+                sectionToShow.classList.remove('hidden');
+            }
+
+            navOrders.addEventListener('click', (e) => {
+                e.preventDefault();
+                showSection(orderListSection);
+            });
+
+            navSummary.addEventListener('click', (e) => {
+                e.preventDefault();
+                showSection(monthlySummarySection);
+            });
+
+            // Show orders by default
+            showSection(orderListSection);
+
             // Auth related elements
             const authContainer = document.getElementById('auth-container');
             const adminEmailInput = document.getElementById('admin-email');
@@ -85,7 +128,18 @@
             const loginBtn = document.getElementById('login-btn');
             const authErrorMessage = document.getElementById('auth-error-message');
             const adminContentDiv = document.getElementById('admin-content');
-            const logoutBtn = document.getElementById('logout-btn');
+            const logoutBtn = document.getElementById('logout-btn-sidebar');
+
+            // Sidebar Toggle
+            const sidebarToggleBtn = document.getElementById('sidebar-toggle-btn');
+            const sidebar = document.querySelector('.sidebar');
+            const dashboardContainer = document.querySelector('.dashboard-container');
+
+            if (sidebarToggleBtn && sidebar && dashboardContainer) {
+                sidebarToggleBtn.addEventListener('click', () => {
+                    dashboardContainer.classList.toggle('sidebar-collapsed');
+                });
+            }
 
             let allOrders = [];
 
