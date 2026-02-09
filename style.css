@@ -626,6 +626,16 @@ header nav a:hover {
     header nav {
         padding-right: 0;
         margin-top: 1rem;
+        width: 100%; /* Ensure nav takes full width */
+        display: flex; /* Use flexbox for nav items */
+        flex-direction: column; /* Stack links vertically */
+        align-items: center; /* Center the stacked links */
+    }
+
+    header nav a {
+        width: 90%; /* Make links take most of the width */
+        margin-bottom: 0.5rem; /* Add space between stacked links */
+        padding: 0.6rem 1rem; /* Slightly reduced padding */
     }
 }
 
@@ -646,27 +656,20 @@ header nav a:hover {
    Responsive Styles
    ========================================================================== */
 
+@media (min-width: 992px) and (max-width: 1199.98px) {
+    #admin-main {
+        grid-template-columns: 2fr 1fr; /* Balanced layout for intermediate desktops */
+        gap: 1.5rem;
+    }
+}
+
 /* -------------------------------------------------------------------------- */
-/* Large devices (desktops, 992px and up) */
+/* Large devices (desktops, 1200px and up) */
 /* -------------------------------------------------------------------------- */
-@media (min-width: 992px) {
+@media (min-width: 1200px) {
     #admin-main {
         grid-template-columns: 3fr 1fr; /* Default desktop layout */
-    }
-
-    header {
-        flex-direction: row;
-        padding: 1.2rem 1rem;
-    }
-
-    header h1 {
-        text-align: left;
-        padding-left: 1rem;
-    }
-
-    header nav {
-        padding-right: 1rem;
-        margin-top: 0;
+        gap: 2rem;
     }
 }
 
@@ -699,6 +702,16 @@ header nav a:hover {
     header nav {
         padding-right: 0;
         margin-top: 1rem;
+        width: 100%; /* Ensure nav takes full width */
+        display: flex; /* Use flexbox for nav items */
+        flex-direction: column; /* Stack links vertically */
+        align-items: center; /* Center the stacked links */
+    }
+
+    header nav a {
+        width: 90%; /* Make links take most of the width */
+        margin-bottom: 0.5rem; /* Add space between stacked links */
+        padding: 0.6rem 1rem; /* Slightly reduced padding */
     }
 
     /* General responsive adjustments */
@@ -944,6 +957,17 @@ header nav a:hover {
     header nav {
         padding-right: 0;
         margin-top: 0.8rem;
+        width: 100%; /* Ensure nav takes full width */
+        display: flex; /* Use flexbox for nav items */
+        flex-direction: column; /* Stack links vertically */
+        align-items: center; /* Center the stacked links */
+    }
+
+    header nav a {
+        width: 90%; /* Make links take most of the width */
+        margin-bottom: 0.4rem; /* Add space between stacked links */
+        padding: 0.5rem 0.8rem; /* Further reduced padding */
+        font-size: 0.9em; /* Adjust font size for very small screens */
     }
 
     .order-card h3 {
