@@ -43,6 +43,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const orderListSection = document.getElementById('order-list-section');
     const monthlySummarySection = document.getElementById('monthly-summary-section');
 
+    // Logout timer variables
+    let logoutTimer;
+    const LOGOUT_TIMEOUT = 30000; // 30 seconds (adjust as needed)
+
     function showSection(sectionToShow) {
         orderListSection.classList.add('hidden');
         monthlySummarySection.classList.add('hidden');
@@ -130,6 +134,23 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // Logout handler for visibilitychange event
+    const handleVisibilityChange = () => {
+        if (document.visibilityState === 'hidden') {
+            // Page is hidden, start logout timer
+            logoutTimer = setTimeout(async () => {
+                await signOut(auth);
+                console.log('Auto-logged out due to inactivity/page hidden.');
+            }, LOGOUT_TIMEOUT);
+        } else {
+            // Page is visible, clear any pending logout timer
+            if (logoutTimer) {
+                clearTimeout(logoutTimer);
+                logoutTimer = null;
+            }
+        }
+    };
+
     // Auth State Observer
     onAuthStateChanged(auth, user => {
         if (user) {
@@ -143,6 +164,9 @@ document.addEventListener('DOMContentLoaded', () => {
             fetchOrders(); // Fetch orders only when logged in
             // Ensure sidebar toggle button is visible in header for dashboard
             sidebarToggleBtn.classList.remove('hidden');
+
+            // Attach visibilitychange listener when user is logged in
+            document.addEventListener('visibilitychange', handleVisibilityChange);
         } else {
             // User is signed out
             body.classList.remove('dashboard-page');
@@ -155,6 +179,14 @@ document.addEventListener('DOMContentLoaded', () => {
             // Hide sidebar toggle button if logged out
             sidebarToggleBtn.classList.add('hidden');
             closeSidebar(); // Ensure sidebar is closed if logged out
+
+            // Remove visibilitychange listener when user is logged out
+            document.removeEventListener('visibilitychange', handleVisibilityChange);
+            // Clear any pending logout timer if user manually logs out while page was hidden
+            if (logoutTimer) {
+                clearTimeout(logoutTimer);
+                logoutTimer = null;
+            }
         }
     });
 
