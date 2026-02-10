@@ -296,6 +296,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         orderSummary.classList.remove('hidden');
+        document.body.classList.add('modal-open');
     });
 
     btnClearCart.addEventListener('click', () => {
@@ -306,6 +307,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     btnBatal.addEventListener('click', () => {
         orderSummary.classList.add('hidden');
+        document.body.classList.remove('modal-open');
     });
 
     btnWhatsapp.addEventListener('click', () => {
@@ -334,6 +336,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         window.open(urlWhatsApp, '_blank');
         orderSummary.classList.add('hidden');
+        document.body.classList.remove('modal-open');
     });
 
     renderHeroSlider(); // Render hero slider immediately

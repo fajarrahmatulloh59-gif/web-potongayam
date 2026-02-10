@@ -8,6 +8,7 @@
 /* Step 1: Set a base font size for html for rem calculations */
 html {
     font-size: 16px; /* Base for rem units: 1rem = 16px */
+    overflow-x: hidden; /* Disable horizontal scrolling for the entire website */
 }
 
 body {
@@ -17,6 +18,12 @@ body {
     min-width: 20rem; /* 320px - Minimum width for responsiveness */
     background-color: #ffdaad;
     font-size: 0.8125rem; /* Base font size for mobile (13px) */
+    overflow-x: hidden; /* Disable horizontal scrolling for the entire website */
+}
+
+/* Body scroll lock when modal is open */
+body.modal-open {
+    overflow: hidden; /* Lock background scroll */
 }
 
 /* --- HERO SECTION --- */
@@ -335,6 +342,8 @@ hr {
     max-height: 90vh; /* Limit height to prevent overflow on screen */
     overflow-y: auto; /* Enable vertical scrolling if content is too long */
     padding: 1.25rem; /* 20px, reduced padding for smaller screens */
+    /* Safe area padding for mobile devices */
+    padding-bottom: calc(1.25rem + env(safe-area-inset-bottom));
 }
 
 .summary-content h2,
@@ -530,6 +539,7 @@ hr {
         width: 80vw; /* Take 80% of viewport width */
         max-width: 37.5rem; /* 600px - Wider for tablets */
         padding: 1.5rem; /* Slightly larger padding */
+        padding-bottom: calc(1.5rem + env(safe-area-inset-bottom));
     }
     .summary-content h2 {
         font-size: 1.5rem; /* Larger font */
@@ -670,6 +680,7 @@ hr {
         width: 70vw; /* Take 70% of viewport width */
         max-width: 31.25rem; /* 500px - original desktop max-width */
         padding: 2rem; /* Original padding */
+        padding-bottom: calc(2rem + env(safe-area-inset-bottom));
     }
     .summary-content h2 {
         font-size: 1.8rem;
@@ -710,5 +721,6 @@ hr {
         width: 60vw; /* Adjust width for very large screens */
         max-width: 31.25rem; /* 500px */
         padding: 2rem;
+        padding-bottom: calc(2rem + env(safe-area-inset-bottom));
     }
 }
