@@ -1,0 +1,603 @@
+/* admin-style.css */
+
+/* Universal Box Sizing */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    color: #344767;
+    line-height: 1.6;
+    font-size: 15px;
+    overflow-x: hidden; /* Prevent horizontal scroll from sidebar animation */
+    background-color: #f4f6f9; /* Default background for admin page */
+}
+
+/* Helper Class */
+.hidden {
+    display: none !important;
+}
+
+/* Login Page Styling */
+body.login-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #e0e0e0; /* Light grey background for login */
+}
+
+#auth-container {
+    background-color: #ffffff;
+    padding: 3rem 2.5rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 90%;
+    text-align: center;
+    animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+#auth-container h2 {
+    color: #344767;
+    margin-bottom: 2rem;
+    font-size: 1.8em;
+}
+
+#auth-container input[type="email"],
+#auth-container input[type="password"] {
+    width: 100%;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    font-size: 1em;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+#auth-container input[type="email"]:focus,
+#auth-container input[type="password"]:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+    outline: none;
+}
+
+#login-btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 1rem 1.5rem;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 1.1em;
+    font-weight: 600;
+    transition: background-color 0.3s, transform 0.1s;
+}
+
+#login-btn:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+}
+
+#login-btn:active {
+    transform: translateY(0);
+}
+
+#auth-error-message {
+    color: #dc3545; /* Red for error messages */
+    margin-top: 1rem;
+    font-size: 0.9em;
+}
+
+/* Dashboard Layout Styling */
+body.dashboard-page {
+    display: flex;
+    flex-direction: column; /* Stacks header and main content */
+    height: 100vh; /* Full viewport height */
+}
+
+.dashboard-wrapper {
+    display: flex;
+    flex: 1; /* Takes remaining height */
+    overflow: hidden; /* Ensures scrollable content within main */
+}
+
+/* Header */
+header {
+    background-color: #ffffff;
+    color: #344767;
+    padding: 1rem 2rem;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    border-bottom: 1px solid #e9ecef;
+    z-index: 20; /* Ensure header is above sidebar overlay if it ever overlaps */
+}
+
+header h1 {
+    margin: 0;
+    font-size: 1.8em;
+    flex-grow: 1;
+    text-align: left;
+    color: #344767;
+}
+
+header nav a {
+    color: #007bff;
+    text-decoration: none;
+    padding: 0.7rem 1.2rem;
+    border: 1px solid #007bff;
+    border-radius: 5px;
+    transition: background-color 0.2s, border-color 0.2s, color 0.2s;
+    font-weight: 500;
+}
+
+header nav a:hover {
+    background-color: #007bff;
+    color: white;
+    border-color: #007bff;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 250px;
+    min-width: 250px;
+    background-color: #344767;
+    color: #fff;
+    padding: 1.5rem 0;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    z-index: 30; /* Above main content */
+    transition: transform 0.3s ease-in-out; /* For mobile slide effect */
+}
+
+.sidebar-header {
+    text-align: center;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.sidebar-header h2 {
+    margin: 0;
+    font-size: 1.8em;
+    color: #e9ecef;
+}
+
+.sidebar-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 2rem 0;
+}
+
+.sidebar-nav li a {
+    display: block;
+    padding: 0.8rem 1.5rem;
+    color: rgba(255,255,255,0.7);
+    text-decoration: none;
+    transition: background-color 0.3s, color 0.3s;
+    font-size: 1.1em;
+}
+
+.sidebar-nav li a:hover, .sidebar-nav li a.active {
+    background-color: #5d6d87;
+    color: #fff;
+    border-left: 4px solid #4CAF50;
+}
+
+.sidebar-footer {
+    padding: 1.5rem;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    text-align: center;
+}
+
+.logout-btn-sidebar {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 1em;
+    transition: background-color 0.3s;
+}
+
+.logout-btn-sidebar:hover {
+    background-color: #c82333;
+}
+
+/* Main Content Area */
+.dashboard-main-content {
+    flex-grow: 1;
+    padding: 2rem;
+    background-color: #f4f6f9;
+    overflow-y: auto; /* Scroll content if it overflows */
+    height: 100%; /* Important for flex-item to enable overflow scroll */
+}
+
+/* Sidebar Toggle Button (Hamburger) */
+#sidebar-toggle-btn {
+    display: none; /* Hidden by default on large screens */
+    background: none;
+    border: none;
+    color: #344767;
+    font-size: 1.8em;
+    cursor: pointer;
+    padding: 0;
+    margin-right: 1rem;
+}
+
+/* Sidebar Overlay */
+.sidebar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 25; /* Between sidebar and main content */
+    display: none; /* Hidden by default */
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.sidebar-overlay.visible {
+    display: block;
+    opacity: 1;
+}
+
+/* Section Styling (Order List & Monthly Summary) */
+#order-list-section, #monthly-summary-section {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.05);
+    margin-bottom: 2rem;
+}
+
+#order-list-section h2, #monthly-summary-section h2 {
+    text-align: left;
+    color: #344767;
+    margin-bottom: 1.8rem;
+    font-size: 1.8em;
+    font-weight: 600;
+    border-bottom: 1px solid #e9ecef;
+    padding-bottom: 1rem;
+}
+
+/* Filter Styling */
+#filter-status {
+    margin-bottom: 1.5rem;
+    text-align: right;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 0.8rem;
+    margin-bottom: 2rem;
+}
+
+#filter-status label {
+    margin: 0;
+    font-weight: 600;
+    color: #495057;
+}
+
+#filter-status select {
+    padding: 0.6rem 1rem;
+    border-radius: 5px;
+    border: 1px solid #ced4da;
+    background-color: #fff;
+    cursor: pointer;
+    font-size: 1em;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+/* Orders Container Styling */
+#orders-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+/* Order Card Styling */
+.order-card {
+    border: none;
+    border-radius: 10px;
+    padding: 1.8rem;
+    margin-bottom: 0;
+    background-color: #fff;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.order-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.order-card h3 {
+    color: #0056b3;
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-size: 1.4em;
+    border-bottom: 1px solid #e9ecef;
+    padding-bottom: 0.8rem;
+}
+
+.order-card p {
+    margin-bottom: 0.5rem;
+    font-size: 0.95em;
+    color: #495057;
+}
+
+.order-card strong {
+    color: #343a40;
+}
+
+.order-card ul {
+    list-style: none;
+    padding-left: 0;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border-top: 1px dashed #e9ecef;
+    padding-top: 1rem;
+}
+
+.order-card ul li {
+    background-color: #e9f5ff;
+    padding: 0.6rem 1rem;
+    margin-bottom: 0.4rem;
+    border-radius: 4px;
+    font-size: 0.9em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.order-card ul li:last-child {
+    margin-bottom: 0;
+}
+
+.order-status {
+    font-weight: 700;
+    padding: 0.3em 0.7em;
+    border-radius: 20px;
+    color: white;
+    font-size: 0.85em;
+    text-transform: capitalize;
+}
+
+.order-status.pending {
+    background-color: #ffc107;
+    color: #343a40;
+}
+.order-status.completed {
+    background-color: #28a745;
+}
+.order-status.cancelled {
+    background-color: #dc3545;
+}
+
+/* Order Actions */
+.order-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.8rem;
+    margin-top: 1.5rem;
+    border-top: 1px solid #e9ecef;
+    padding-top: 1rem;
+}
+
+.order-actions select {
+    padding: 0.6rem 1rem;
+    border-radius: 5px;
+    border: 1px solid #ced4da;
+    background-color: #fff;
+    cursor: pointer;
+    font-size: 0.9em;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.order-actions button {
+    padding: 0.6rem 1.2rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9em;
+    font-weight: 600;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+.order-actions button:active {
+    transform: translateY(1px);
+}
+
+.order-actions .delete-order-btn {
+    background-color: #dc3545;
+    color: white;
+}
+.order-actions .delete-order-btn:hover {
+    background-color: #c82333;
+}
+
+/* Monthly Summary Styles */
+#summary-container {
+    padding: 1rem;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    margin-top: 1.5rem;
+}
+
+#summary-container ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#summary-container ul li {
+    background-color: #f8f9fa;
+    padding: 1rem 1.2rem;
+    margin-bottom: 0.8rem;
+    border-radius: 8px;
+    border: 1px solid #e9ecef;
+    font-size: 0.95em;
+    color: #344767;
+    transition: background-color 0.3s;
+}
+
+#summary-container ul li:last-child {
+    margin-bottom: 0;
+}
+
+#summary-container ul li:hover {
+    background-color: #e9ecef;
+}
+
+#summary-container ul li strong {
+    color: #004085;
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+    /* Dashboard wrapper changes for mobile */
+    .dashboard-wrapper {
+        flex-direction: row; /* Keep row, sidebar will overlap */
+    }
+
+    .sidebar {
+        position: fixed;
+        height: 100%;
+        left: 0;
+        top: 0;
+        transform: translateX(-100%); /* Hidden by default */
+        /* width is already 250px */
+        box-shadow: 2px 0 10px rgba(0,0,0,0.2);
+    }
+
+    .sidebar.open { /* Class added by JS when sidebar is open */
+        transform: translateX(0);
+    }
+
+    .dashboard-main-content {
+        padding: 1rem; /* Reduce padding for smaller screens */
+    }
+
+    header {
+        justify-content: flex-start; /* Align items to start */
+        padding: 0.8rem 1rem;
+    }
+
+    header h1 {
+        flex-grow: 1; /* Allow title to take remaining space */
+        text-align: center; /* Center the title */
+    }
+
+    header nav { /* Hide old header navigation on small screens */
+        display: none;
+    }
+
+    #sidebar-toggle-btn {
+        display: block; /* Show toggle button on small screens */
+    }
+
+    #order-list-section, #monthly-summary-section {
+        padding: 1rem;
+    }
+
+    .order-card h3 {
+        font-size: 1.2em;
+    }
+
+    .order-card ul li {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 0.5rem;
+    }
+    .order-card ul li span {
+        margin-bottom: 0.2rem;
+    }
+
+    .order-actions {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    .order-actions select,
+    .order-actions button {
+        width: 100%;
+    }
+}
+
+/* Small devices (landscape phones, 576px and up) */
+@media (max-width: 575.98px) {
+    #auth-container {
+        padding: 2rem 1.5rem;
+    }
+
+    #auth-container h2 {
+        font-size: 1.5em;
+    }
+
+    #auth-container input[type="email"],
+    #auth-container input[type="password"],
+    #login-btn {
+        padding: 0.8rem 1rem;
+        font-size: 1em;
+    }
+
+    .dashboard-main-content {
+        padding: 0.8rem;
+    }
+
+    header {
+        padding: 0.5rem 0.8rem;
+    }
+
+    header h1 {
+        font-size: 1.4em;
+    }
+
+    #sidebar-toggle-btn {
+        font-size: 1.5em;
+        margin-right: 0.8rem;
+    }
+
+    #order-list-section, #monthly-summary-section {
+        padding: 0.8rem;
+    }
+
+    .order-card h3 {
+        font-size: 1.1em;
+    }
+
+    .order-card p {
+        font-size: 0.9em;
+    }
+
+    .order-card ul li {
+        padding: 0.4rem;
+        font-size: 0.8em;
+    }
+
+    .order-actions {
+        gap: 0.4rem;
+    }
+    .order-actions select,
+    .order-actions button {
+        padding: 0.5rem;
+        font-size: 0.8em;
+    }
+}

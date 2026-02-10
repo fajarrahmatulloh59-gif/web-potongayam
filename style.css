@@ -1,7 +1,15 @@
+/* style.css */
+
+/* Universal Box Sizing */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
 html, body {
     font-family: sans-serif;
     margin: 0;
-    overflow-x: hidden; /* Mencegah overflow horizontal */
+    height: 100%; /* Pastikan html dan body mengambil seluruh tinggi viewport */
+    min-width: 320px; /* Minimum width for responsiveness */
     background-color: #ffdaad;
     
 }
@@ -282,7 +290,7 @@ hr {
 }
 
 #order-summary.hidden {
-    display: none;
+    display: none !important;
 }
 
 .summary-content {
@@ -350,554 +358,12 @@ hr {
     background-color: #c82333;
 }
 
-.hidden {
-    display: none;
-}
-
-
-
-/* General Admin Layout */
-body.admin-page {
-    font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; /* Font yang lebih bersih */
-    background-color: #f4f6f9; /* Latar belakang abu-abu muda yang profesional */
-    color: #344767; /* Teks gelap */
-    line-height: 1.6;
-    font-size: 15px;
-    margin: 0;
-    overflow-x: hidden;
-    display: flex; /* Untuk memusatkan auth-container jika ada */
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh; /* Pastikan body mengisi seluruh tinggi viewport */
-}
-
-/* Auth Container Styling */
-#auth-container {
-    background-color: #ffffff;
-    padding: 3rem 2.5rem;
-    border-radius: 10px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    max-width: 400px;
-    width: 90%;
-    text-align: center;
-    position: relative; /* Untuk z-index */
-    z-index: 10; /* Pastikan di atas overlay jika ada */
-    margin: auto; /* Memusatkan secara horizontal jika display flex tidak diterapkan pada body */
-}
-
-#auth-container h2 {
-    color: #344767;
-    margin-bottom: 2rem;
-    font-size: 1.8em;
-}
-
-#auth-container input[type="email"],
-#auth-container input[type="password"] {
-    width: calc(100% - 2rem); /* Kurangi padding dari lebar total */
-    padding: 1rem;
-    margin-bottom: 1.5rem;
-    border: 1px solid #ced4da;
-    border-radius: 5px;
-    font-size: 1em;
-    transition: border-color 0.3s, box-shadow 0.3s;
-}
-
-#auth-container input[type="email"]:focus,
-#auth-container input[type="password"]:focus {
-    border-color: #007bff;
-    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
-    outline: none;
-}
-
-#login-btn {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 1rem 1.5rem;
-    border-radius: 5px;
-    cursor: pointer;
-    width: 100%;
-    font-size: 1.1em;
-    font-weight: 600;
-    transition: background-color 0.3s, transform 0.1s;
-}
-
-#login-btn:hover {
-    background-color: #0056b3;
-    transform: translateY(-2px);
-}
-
-#login-btn:active {
-    transform: translateY(0);
-}
-
-#auth-error-message {
-    color: #dc3545; /* Merah untuk pesan error */
-    margin-top: 1rem;
-    font-size: 0.9em;
-}
-
-.dashboard-container {
-    display: flex;
-    min-height: 100vh;
-    width: 100%;
-}
-
-.sidebar {
-    width: 250px;
-    min-width: 250px; /* Agar tidak mengecil */
-    background-color: #344767; /* Warna gelap untuk sidebar */
-    color: #fff;
-    padding: 1.5rem 0;
-    box-shadow: 2px 0 5px rgba(0,0,0,0.1);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between; /* Untuk mendorong footer ke bawah */
-}
-
-.sidebar-header {
-    text-align: center;
-    padding-bottom: 1.5rem;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
-}
-
-.sidebar-header h2 {
-    margin: 0;
-    font-size: 1.8em;
-    color: #e9ecef;
-}
-
-.sidebar-nav ul {
-    list-style: none;
-    padding: 0;
-    margin: 2rem 0;
-}
-
-.sidebar-nav li a {
-    display: block;
-    padding: 0.8rem 1.5rem;
-    color: rgba(255,255,255,0.7);
-    text-decoration: none;
-    transition: background-color 0.3s, color 0.3s;
-    font-size: 1.1em;
-}
-
-.sidebar-nav li a:hover, .sidebar-nav li a.active {
-    background-color: #5d6d87; /* Warna hover/aktif yang sedikit lebih terang */
-    color: #fff;
-    border-left: 4px solid #4CAF50; /* Indikator aktif */
-}
-
-.sidebar-footer {
-    padding: 1.5rem;
-    border-top: 1px solid rgba(255,255,255,0.1);
-    text-align: center;
-}
-
-.logout-btn-sidebar {
-    background-color: #dc3545; /* Merah untuk logout */
-    color: white;
-    border: none;
-    padding: 0.75rem 1.5rem;
-    border-radius: 5px;
-    cursor: pointer;
-    width: 100%;
-    font-size: 1em;
-    transition: background-color 0.3s;
-}
-
-.logout-btn-sidebar:hover {
-    background-color: #c82333;
-}
-
-.dashboard-main-content {
-    flex-grow: 1;
-    padding: 2rem;
-    background-color: #f4f6f9; /* Latar belakang konten utama */
-}
-
-/* Header Styling - disesuaikan agar lebih minimalis */
-header {
-    background-color: #ffffff; /* Warna putih untuk header */
-    color: #344767;
-    padding: 1rem 2rem;
-    text-align: center;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    border-bottom: 1px solid #e9ecef;
-}
-
-header h1 {
-    margin: 0;
-    font-size: 1.8em;
-    flex-grow: 1;
-    text-align: left;
-    padding-left: 0; /* Menghapus padding-left lama */
-    color: #344767;
-}
-
-header nav {
-    margin: 0;
-    padding-right: 0;
-}
-
-header nav a {
-    color: #007bff; /* Warna link yang konsisten */
-    text-decoration: none;
-    padding: 0.7rem 1.2rem;
-    border: 1px solid #007bff;
-    border-radius: 5px;
-    transition: background-color 0.2s, border-color 0.2s, color 0.2s;
-    font-weight: 500;
-}
-
-header nav a:hover {
-    background-color: #007bff;
-    color: white;
-    border-color: #007bff;
-}
-
-#sidebar-toggle-btn {
-    display: none; /* Sembunyikan secara default di layar besar */
-}
-
-
-/* Section Styling (Order List & Monthly Summary) */
-
-#order-list-section, #monthly-summary-section {
-    background-color: white;
-    padding: 2rem;
-    border-radius: 10px;
-    box-shadow: 0 0 15px rgba(0,0,0,0.05); /* Softer shadow */
-    margin-bottom: 2rem; /* Tambahkan margin bawah untuk memisahkan section */
-}
-
-#order-list-section h2, #monthly-summary-section h2 {
-    text-align: left; /* Sesuaikan ke kiri */
-    color: #344767; /* Warna judul yang konsisten */
-    margin-bottom: 1.8rem;
-    font-size: 1.8em;
-    font-weight: 600;
-    border-bottom: 1px solid #e9ecef; /* Garis bawah pada judul */
-    padding-bottom: 1rem;
-}
-
-/* Filter Styling */
-#filter-status {
-    margin-bottom: 1.5rem;
-    text-align: right;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    gap: 0.8rem;
-    margin-bottom: 2rem; /* Sesuaikan margin bawah */
-}
-
-#filter-status label {
-    margin: 0;
-    font-weight: 600;
-    color: #495057;
-}
-
-#filter-status select {
-    padding: 0.6rem 1rem;
-    border-radius: 5px;
-    border: 1px solid #ced4da;
-    background-color: #fff;
-    cursor: pointer;
-    font-size: 1em;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05); /* Tambahkan shadow */
-}
-
-/* Orders Container Styling */
-#orders-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Responsif grid */
-    gap: 1.5rem; /* Jarak antar kartu */
-}
-
-/* Order Card Styling */
-.order-card {
-    border: none; /* Hapus border lama */
-    border-radius: 10px; /* Radius yang lebih besar */
-    padding: 1.8rem; /* Padding yang lebih besar */
-    margin-bottom: 0; /* Margin ditangani oleh gap grid */
-    background-color: #fff;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.08); /* Shadow yang lebih menonjol */
-    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-}
-
-.order-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 25px rgba(0,0,0,0.15); /* Shadow yang lebih kuat saat hover */
-}
-
-.order-card h3 {
-    color: #0056b3; /* Darker blue for titles */
-    margin-top: 0;
-    margin-bottom: 1rem;
-    font-size: 1.4em;
-    border-bottom: 1px solid #e9ecef;
-    padding-bottom: 0.8rem;
-}
-
-.order-card p {
-    margin-bottom: 0.5rem;
-    font-size: 0.95em;
-    color: #495057;
-}
-
-.order-card strong {
-    color: #343a40;
-}
-
-.order-card ul {
-    list-style: none; /* Remove default bullet */
-    padding-left: 0;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-    border-top: 1px dashed #e9ecef;
-    padding-top: 1rem;
-}
-
-.order-card ul li {
-    background-color: #e9f5ff; /* Light blue background for items */
-    padding: 0.6rem 1rem;
-    margin-bottom: 0.4rem;
-    border-radius: 4px;
-    font-size: 0.9em;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-.order-card ul li:last-child {
-    margin-bottom: 0;
-}
-
-.order-status {
-    font-weight: 700;
-    padding: 0.3em 0.7em;
-    border-radius: 20px; /* Pill shape */
-    color: white;
-    font-size: 0.85em;
-    text-transform: capitalize;
-}
-
-.order-status.pending {
-    background-color: #ffc107; /* warning yellow */
-    color: #343a40;
-}
-.order-status.completed {
-    background-color: #28a745; /* success green */
-}
-.order-status.cancelled {
-    background-color: #dc3545; /* danger red */
-}
-
-/* Order Actions */
-.order-actions {
-    display: flex;
-    justify-content: flex-end;
-    gap: 0.8rem;
-    margin-top: 1.5rem;
-    border-top: 1px solid #e9ecef;
-    padding-top: 1rem;
-}
-
-.order-actions select {
-    padding: 0.6rem 1rem;
-    border-radius: 5px;
-    border: 1px solid #ced4da;
-    background-color: #fff;
-    cursor: pointer;
-    font-size: 0.9em;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05); /* Tambahkan shadow */
-}
-
-.order-actions button {
-    padding: 0.6rem 1.2rem;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 0.9em;
-    font-weight: 600;
-    transition: background-color 0.2s, transform 0.1s;
-}
-
-.order-actions button:active {
-    transform: translateY(1px);
-}
-
-.order-actions .delete-order-btn {
-    background-color: #dc3545;
-    color: white;
-}
-.order-actions .delete-order-btn:hover {
-    background-color: #c82333;
-}
-
-/* Monthly Summary Styles */
-#summary-container {
-    padding: 1rem; /* Tambahkan padding di semua sisi */
-    background-color: #fff; /* Latar belakang putih */
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.08); /* Shadow yang konsisten */
-    margin-top: 1.5rem; /* Beri sedikit jarak dari judul Ringkasan Bulanan */
-}
-
-#summary-container ul {
-    list-style: none;
-    padding: 0;
-    margin: 0; /* Hapus margin default ul */
-}
-
-#summary-container ul li {
-    background-color: #f8f9fa; /* Latar belakang item yang lebih netral */
-    padding: 1rem 1.2rem;
-    margin-bottom: 0.8rem;
-    border-radius: 8px;
-    border: 1px solid #e9ecef; /* Border lebih soft */
-    font-size: 0.95em;
-    color: #344767; /* Warna teks yang konsisten */
-    transition: background-color 0.3s;
-}
-
-#summary-container ul li:last-child {
-    margin-bottom: 0;
-}
-
-#summary-container ul li:hover {
-    background-color: #e9ecef; /* Efek hover */
-}
-
-#summary-container ul li strong {
-    color: #004085;
-}
-
-/* Responsive adjustments for smaller screens */
-@media (max-width: 768px) {
-    .dashboard-container {
-        flex-direction: column; /* Stack sidebar and content */
-    }
-
-    .sidebar {
-        position: fixed;
-        height: 100%;
-        left: 0;
-        top: 0;
-        z-index: 1000;
-        transform: translateX(-100%); /* Hide sidebar by default */
-        transition: transform 0.3s ease-in-out;
-        width: 250px; /* Lebar sidebar saat tampil */
-        min-width: 250px;
-        box-shadow: 2px 0 10px rgba(0,0,0,0.2); /* Bayangan saat muncul */
-    }
-
-    .dashboard-container.sidebar-collapsed .sidebar {
-        transform: translateX(0); /* Show sidebar when toggled */
-    }
-
-    .dashboard-main-content {
-        padding: 1rem; /* Kurangi padding untuk layar kecil */
-        /* Berikan margin kiri untuk memberi ruang pada sidebar saat terbuka, atau gunakan overlay */
-        /* Untuk saat ini, kita biarkan saja padding dan sidebar akan meng-overlay konten */
-    }
-
-    header {
-        flex-direction: row; /* Kembali ke row untuk menempatkan toggle button */
-        justify-content: space-between;
-        padding: 0.8rem 1rem;
-    }
-
-
-
-    header nav { /* Sembunyikan navigasi header yang lama (Kembali ke Toko) di layar kecil */
-        display: none;
-    }
-
-    #sidebar-toggle-btn {
-        display: block; /* Tampilkan tombol toggle di layar kecil */
-        background: none;
-        border: none;
-        color: #344767;
-        font-size: 1.8em;
-        cursor: pointer;
-        padding: 0;
-        margin-right: 1rem;
-    }
-
-    #order-list-section, #monthly-summary-section {
-        padding: 1rem;
-    }
-
-    .order-card h3 {
-        font-size: 1.2em;
-    }
-
-    .order-card ul li {
-        flex-direction: column; /* Stack product name and price */
-        align-items: flex-start;
-        padding: 0.5rem;
-    }
-    .order-card ul li span { /* Adjust spacing for stacked items */
-        margin-bottom: 0.2rem;
-    }
-
-    .order-actions {
-        flex-direction: column; /* Stack action buttons/select */
-        gap: 0.5rem;
-    }
-    .order-actions select,
-    .order-actions button {
-        width: 100%; /* Make them take full width */
-    }
-}
-
-/* New styles for location input and map preview */
-#location {
-    margin-bottom: 1rem;
-}
-
-#mapPreview {
-    width: 100%;
-    height: 300px;
-    border: 1px solid #ced4da;
-    border-radius: 4px;
-    margin-bottom: 1rem;
-}
-
-/* ==========================================================================
-   Responsive Styles
-   ========================================================================== */
-
-@media (min-width: 992px) and (max-width: 1199.98px) {
-    /* No specific layout grid needed here, flexbox handles primary layout */
-}
 
 /* -------------------------------------------------------------------------- */
-/* Large devices (desktops, 1200px and up) */
+/* Responsive Styles for Storefront (excluding admin specific) */
 /* -------------------------------------------------------------------------- */
-@media (min-width: 1200px) {
-    /* No specific layout grid needed here, flexbox handles primary layout */
-}
 
-
-/* -------------------------------------------------------------------------- */
-/* Medium devices (tablets, 768px and up) */
-/* -------------------------------------------------------------------------- */
 @media (min-width: 768px) and (max-width: 991.98px) {
-    .sidebar {
-        width: 200px; /* Sidebar lebih ramping untuk tablet */
-        min-width: 200px;
-    }
-
-    .dashboard-main-content {
-        padding: 1.5rem;
-    }
-
     /* General responsive adjustments */
     body {
         font-size: 14px;
@@ -961,9 +427,7 @@ header nav a:hover {
     }
 }
 
-/* -------------------------------------------------------------------------- */
 /* Small devices (landscape phones, 576px and up) */
-/* -------------------------------------------------------------------------- */
 @media (min-width: 576px) and (max-width: 767.98px) {
     body {
         font-size: 14px;
@@ -1001,37 +465,26 @@ header nav a:hover {
         padding: 0 1rem;
     }
 
-    /* Admin specific - fokus pada konten utama */
-    .dashboard-main-content {
-        padding: 1rem; /* Sesuaikan padding konten utama */
+    /* Cart items */
+    .cart-item {
+        flex-direction: row; /* Default for medium */
+        justify-content: space-between;
+        align-items: center;
+    }
+    .cart-item .remove-from-cart {
+        margin-top: 0;
+        margin-left: 1rem;
     }
 
-    .order-card h3 {
-        font-size: 1.2em;
-    }
-
-    .order-card ul li {
-        flex-direction: column; /* Stack product name and price */
-        align-items: flex-start;
-        padding: 0.5rem;
-    }
-    .order-card ul li span { /* Adjust spacing for stacked items */
-        margin-bottom: 0.2rem;
-    }
-
-    .order-actions {
-        flex-direction: column; /* Stack action buttons/select */
-        gap: 0.5rem;
-    }
-    .order-actions select,
-    .order-actions button {
-        width: 100%; /* Make them take full width */
+    /* Order Summary specific adjustments */
+    .summary-content {
+        max-width: calc(100% - 2rem);
+        width: 100%;
+        padding: 1.5rem;
     }
 }
 
-/* -------------------------------------------------------------------------- */
 /* Extra small devices (portrait phones, less than 576px) */
-/* -------------------------------------------------------------------------- */
 @media (max-width: 575.98px) {
     body {
         font-size: 13px;
@@ -1073,7 +526,7 @@ header nav a:hover {
     #pembelian select,
     #form-pembelian button,
     #pembelian button {
-        width: calc(100% - 0.5rem);
+        width: 100%;
     }
 
     /* Cart items */
@@ -1113,50 +566,6 @@ header nav a:hover {
     }
     .summary-content button {
         padding: 0.5rem 0.8rem;
-        font-size: 0.8em;
-    }
-
-
-
-    #order-list-section, #monthly-summary-section {
-        padding: 0.8rem;
-    }
-
-
-
-
-
-
-
-
-
-    .order-card h3 {
-        font-size: 1.1em;
-    }
-
-    .order-card p {
-        font-size: 0.9em;
-    }
-
-    .order-card ul li {
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 0.4rem;
-        font-size: 0.8em;
-    }
-    .order-card ul li span {
-        margin-bottom: 0.1rem;
-    }
-
-    .order-actions {
-        flex-direction: column;
-        gap: 0.4rem;
-        margin-top: 1rem;
-    }
-    .order-actions select,
-    .order-actions button {
-        width: 100%;
-        padding: 0.5rem;
         font-size: 0.8em;
     }
 }
