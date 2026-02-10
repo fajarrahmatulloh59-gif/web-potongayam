@@ -5,7 +5,12 @@
     box-sizing: border-box;
 }
 
-html, body {
+/* Step 1: Set a base font size for html for rem calculations */
+html {
+    font-size: 16px; /* Base for rem units: 1rem = 16px */
+}
+
+body {
     font-family: sans-serif;
     margin: 0;
     height: 100%; /* Pastikan html dan body mengambil seluruh tinggi viewport */
@@ -71,26 +76,26 @@ html, body {
 }
 
 .produk-item {
-    border: 1px solid #e9ecef;
-    border-radius: 8px;
+    border: 0.0625rem solid #e9ecef; /* 1px */
+    border-radius: 0.5rem; /* 8px */
     padding: 1.5rem;
-    width: 280px;
+    width: 280px; /* Keeping px for fixed width, assuming this is desired */
     background-color: white;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    box-shadow: 0 0.25rem 0.5rem rgba(0,0,0,0.05); /* 0 4px 8px */
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .produk-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    transform: translateY(-0.3125rem); /* -5px */
+    box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.1); /* 0 8px 16px */
 }
 
 
 .produk-item img {
     max-width: 100%;
-    height: 180px;
+    height: 11.25rem; /* 180px */
     object-fit: cover;
-    border-radius: 5px;
+    border-radius: 0.3125rem; /* 5px */
     margin-bottom: 1rem;
 }
 
@@ -110,7 +115,7 @@ html, body {
     color: white;
     border: none;
     padding: 0.75rem 1.5rem;
-    border-radius: 5px;
+    border-radius: 0.3125rem; /* 5px */
     cursor: pointer;
     width: 100%;
     font-size: 1rem;
@@ -154,19 +159,19 @@ html, body {
     padding: 0.5rem;
     margin-bottom: 1rem;
     box-sizing: border-box;
-    border: 1px solid #ced4da;
-    border-radius: 4px;
+    border: 0.0625rem solid #ced4da; /* 1px */
+    border-radius: 0.25rem; /* 4px */
 }
 
 #form-pembelian button,
 #pembelian button {
     width: 100%;
     padding: 0.75rem;
-    margin-bottom: 0.5rem; /* Added margin for new buttons */
+    margin-bottom: 0.5rem;
     background-color: #007bff;
     color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 0.3125rem; /* 5px */
     cursor: pointer;
     transition: background-color 0.2s;
 }
@@ -192,7 +197,7 @@ html, body {
 
 hr {
     border: 0;
-    border-top: 1px solid #eee;
+    border-top: 0.0625rem solid #eee; /* 1px */
     margin: 2rem 0;
 }
 
@@ -216,11 +221,11 @@ hr {
 }
 
 #cart-items {
-    border: 1px solid #e9ecef;
-    border-radius: 8px;
+    border: 0.0625rem solid #e9ecef; /* 1px */
+    border-radius: 0.5rem; /* 8px */
     padding: 1rem;
     margin-top: 1rem;
-    min-height: 50px;
+    min-height: 3.125rem; /* 50px */
     text-align: left;
 }
 
@@ -229,7 +234,7 @@ hr {
     justify-content: space-between;
     align-items: center;
     padding: 0.5rem 0;
-    border-bottom: 1px solid #f8f9fa;
+    border-bottom: 0.0625rem solid #f8f9fa; /* 1px */
 }
 
 .cart-item:last-child {
@@ -276,17 +281,19 @@ hr {
     background-color: #c82333;
 }
 
+/* Step 2: Mobile-first base styles for #order-summary and .summary-content */
 #order-summary {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
+    width: 100vw; /* Use vw for full viewport width */
+    height: 100vh; /* Use vh for full viewport height */
     background-color: rgba(0, 0, 0, 0.7);
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 100;
+    /* No padding here, use margin/padding on .summary-content itself */
 }
 
 #order-summary.hidden {
@@ -295,34 +302,46 @@ hr {
 
 .summary-content {
     background-color: white;
-    padding: 2rem;
-    border-radius: 10px;
-    max-width: 500px;
-    width: 90%;
+    border-radius: 0.625rem; /* 10px */
     text-align: left;
+    position: relative; /* For proper stacking context with overflow */
+    box-shadow: 0 0.25rem 1.25rem rgba(0, 0, 0, 0.15); /* Softer, slightly larger shadow */
+
+    /* Mobile-first specific size and overflow control */
+    width: 90vw; /* Take 90% of viewport width */
+    max-width: 22.5rem; /* Max width for mobile (e.g., 360px), using rem */
+    max-height: 90vh; /* Limit height to prevent overflow on screen */
+    overflow-y: auto; /* Enable vertical scrolling if content is too long */
+    padding: 1.25rem; /* 20px, reduced padding for smaller screens */
 }
 
 .summary-content h2,
 .summary-content h3 {
     text-align: center;
-    margin-bottom: 1rem;
+    margin-bottom: 0.8rem; /* Reduced margin for mobile */
+    font-size: 1.1rem; /* Smaller font for mobile h2/h3 */
+}
+.summary-content h2 {
+    font-size: 1.2rem;
 }
 
 .summary-content p {
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.4rem; /* Reduced margin for mobile */
+    font-size: 0.9rem; /* Smaller font for mobile paragraphs */
 }
 
 .summary-content ul {
     list-style: none;
     padding: 0;
-    margin-bottom: 1rem;
-    border-top: 1px solid #eee;
-    padding-top: 1rem;
+    margin-bottom: 0.8rem; /* Reduced margin for mobile */
+    border-top: 0.0625rem solid #eee; /* 1px */
+    padding-top: 0.8rem; /* Reduced padding for mobile */
 }
 
 .summary-content ul li {
-    padding: 0.3rem 0;
-    border-bottom: 1px dashed #eee;
+    padding: 0.3rem 0; /* Reduced padding for mobile list items */
+    border-bottom: 0.0625rem dashed #eee; /* 1px */
+    font-size: 0.9rem; /* Smaller font for mobile list items */
 }
 
 .summary-content ul li:last-child {
@@ -330,12 +349,13 @@ hr {
 }
 
 .summary-content button {
-    margin-top: 1rem;
-    padding: 0.75rem 1.5rem;
-    border-radius: 5px;
+    margin-top: 0.8rem; /* Reduced margin for mobile buttons */
+    padding: 0.6rem 1rem; /* Reduced padding for mobile buttons */
+    border-radius: 0.3125rem; /* 5px */
     cursor: pointer;
     width: 100%;
-    margin-bottom: 0.5rem;
+    font-size: 0.9rem; /* Smaller font for mobile buttons */
+    margin-bottom: 0.4rem;
 }
 
 #btn-whatsapp {
@@ -363,10 +383,10 @@ hr {
 /* Responsive Styles for Storefront (excluding admin specific) */
 /* -------------------------------------------------------------------------- */
 
-@media (min-width: 768px) and (max-width: 991.98px) {
-    /* General responsive adjustments */
+/* Step 3: Tablet breakpoint (576px–768px) */
+@media (min-width: 36rem) and (max-width: 48rem) { /* 576px and 768px in rem */
     body {
-        font-size: 14px;
+        font-size: 0.875rem; /* 14px */
     }
 
     /* Adjust padding for main sections */
@@ -393,7 +413,8 @@ hr {
 
     /* Order form adjustments */
     #form-pembelian {
-        padding: 0 1.5rem;
+        padding: 0 1rem; /* Reduced for tablet */
+        max-width: 31.25rem; /* 500px, if keeping a fixed max-width */
     }
 
     /* Cart items */
@@ -407,165 +428,114 @@ hr {
         margin-left: 1rem;
     }
 
-    /* Order Summary specific adjustments */
+    /* Order Summary specific adjustments for Tablet */
     .summary-content {
-        max-width: 600px; /* Wider for tablets */
-        width: 90%;
-        padding: 1.5rem;
+        width: 80vw; /* Take 80% of viewport width */
+        max-width: 37.5rem; /* 600px, Wider for tablets */
+        padding: 1.5rem; /* Slightly larger padding */
     }
 
     .summary-content h2 {
-        font-size: 1.8em;
+        font-size: 1.5rem; /* Larger font */
     }
     .summary-content h3 {
-        font-size: 1.4em;
-    }
-
-    /* Product Slider adjustments */
-    .produk-slider {
-        padding: 0 20px;
-    }
-}
-
-/* Small devices (landscape phones, 576px and up) */
-@media (min-width: 576px) and (max-width: 767.98px) {
-    body {
-        font-size: 14px;
-    }
-
-    /* Adjust padding for main sections */
-    #produk, #pembelian {
-        padding: 2.5rem 1rem;
-    }
-
-    /* Hero section content */
-    .hero-content {
-        max-width: 95%;
-        padding: 1rem;
-    }
-    .hero-content h1 {
-        font-size: 1.8em;
-    }
-    .hero-content p {
-        font-size: 0.9em;
-    }
-
-    /* Product Slider adjustments */
-    .produk-slider {
-        padding: 0 15px;
-    }
-    .produk-item {
-        width: 100%;
-        max-width: 300px;
-        margin: 0 auto;
-    }
-
-    /* Order form adjustments */
-    #form-pembelian {
-        padding: 0 1rem;
-    }
-
-    /* Cart items */
-    .cart-item {
-        flex-direction: row; /* Default for medium */
-        justify-content: space-between;
-        align-items: center;
-    }
-    .cart-item .remove-from-cart {
-        margin-top: 0;
-        margin-left: 1rem;
-    }
-
-    /* Order Summary specific adjustments */
-    .summary-content {
-        max-width: calc(100% - 2rem);
-        width: 100%;
-        padding: 1.5rem;
-    }
-}
-
-/* Extra small devices (portrait phones, less than 576px) */
-@media (max-width: 575.98px) {
-    body {
-        font-size: 13px;
-    }
-
-    /* Adjust padding for main sections */
-    #produk, #pembelian {
-        padding: 1.5rem 0.8rem;
-    }
-
-    /* Hero section content */
-    .hero-content {
-        max-width: 95%;
-        padding: 0.8rem;
-    }
-    .hero-content h1 {
-        font-size: 1.6em;
-    }
-    .hero-content p {
-        font-size: 0.8em;
-    }
-
-    /* Product Slider adjustments */
-    .produk-slider {
-        padding: 0 10px;
-    }
-    .produk-item {
-        width: 100%;
-        max-width: 280px;
-        margin: 0 auto;
-    }
-
-    /* Order form adjustments */
-    #form-pembelian {
-        padding: 0 0.8rem;
-    }
-    #form-pembelian input,
-    #form-pembelian textarea,
-    #pembelian select,
-    #form-pembelian button,
-    #pembelian button {
-        width: 100%;
-    }
-
-    /* Cart items */
-    .cart-item {
-        flex-direction: column;
-        align-items: flex-start;
-        font-size: 0.9em;
-    }
-    .cart-item .remove-from-cart {
-        margin-top: 0.4rem;
-        margin-left: 0;
-        width: auto;
-        padding: 0.2rem 0.5rem;
-        font-size: 0.7em;
-    }
-
-    /* Order Summary specific adjustments */
-    #order-summary {
-        padding: 0.5rem;
-    }
-
-    .summary-content {
-        max-width: calc(100% - 1rem);
-        width: 100%;
-        padding: 1rem;
-        margin: 1rem auto;
-    }
-
-    .summary-content h2 {
-        font-size: 1.3em;
-    }
-    .summary-content h3 {
-        font-size: 1.1em;
+        font-size: 1.2rem; /* Larger font */
     }
     .summary-content p, .summary-content ul li {
-        font-size: 0.85em;
+        font-size: 0.95rem; /* Slightly larger text */
     }
     .summary-content button {
-        padding: 0.5rem 0.8rem;
-        font-size: 0.8em;
+        padding: 0.75rem 1.5rem; /* Larger buttons */
+        font-size: 1rem;
+    }
+}
+
+/* Step 4: Desktop breakpoint (769px–1200px) */
+@media (min-width: 48.0625rem) and (max-width: 75rem) { /* 769px and 1200px in rem */
+    body {
+        font-size: 0.9375rem; /* 15px */
+    }
+    /* Common desktop adjustments */
+    #produk, #pembelian {
+        padding: 4rem 2rem;
+    }
+    .hero-content {
+        max-width: 80%;
+        padding: 2rem;
+    }
+    .hero-content h1 {
+        font-size: 2.5em;
+    }
+    .hero-content p {
+        font-size: 1.1em;
+    }
+    #form-pembelian {
+        max-width: 31.25rem; /* 500px */
+        padding: 0;
+    }
+
+    /* Order Summary specific adjustments for Desktop */
+    .summary-content {
+        width: 70vw; /* Take 70% of viewport width */
+        max-width: 31.25rem; /* 500px, original desktop max-width */
+        padding: 2rem; /* Original padding */
+    }
+    .summary-content h2 {
+        font-size: 1.8rem;
+    }
+    .summary-content h3 {
+        font-size: 1.4rem;
+    }
+    .summary-content p, .summary-content ul li {
+        font-size: 1rem;
+    }
+    .summary-content button {
+        padding: 0.75rem 1.5rem;
+        font-size: 1rem;
+    }
+}
+
+/* Optional: Large Desktop (1201px and up) - to ensure consistent large screen behavior */
+@media (min-width: 75.0625rem) { /* 1201px in rem */
+    body {
+        font-size: 1rem; /* 16px */
+    }
+    /* Ensure desktop styles are maintained */
+    #produk, #pembelian {
+        padding: 4rem 2rem;
+    }
+    .hero-content {
+        max-width: 80%;
+        padding: 2rem;
+    }
+    .hero-content h1 {
+        font-size: 2.5em;
+    }
+    .hero-content p {
+        font-size: 1.1em;
+    }
+    #form-pembelian {
+        max-width: 31.25rem; /* 500px */
+        padding: 0;
+    }
+
+    /* Order Summary specific adjustments for Large Desktop */
+    .summary-content {
+        width: 60vw; /* Adjust width for very large screens */
+        max-width: 31.25rem; /* 500px */
+        padding: 2rem;
+    }
+    .summary-content h2 {
+        font-size: 1.8rem;
+    }
+    .summary-content h3 {
+        font-size: 1.4rem;
+    }
+    .summary-content p, .summary-content ul li {
+        font-size: 1rem;
+    }
+    .summary-content button {
+        padding: 0.75rem 1.5rem;
+        font-size: 1rem;
     }
 }
