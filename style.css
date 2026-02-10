@@ -14,11 +14,12 @@ body {
     font-family: sans-serif;
     margin: 0;
     height: 100%; /* Pastikan html dan body mengambil seluruh tinggi viewport */
-    min-width: 320px; /* Minimum width for responsiveness */
+    min-width: 20rem; /* 320px - Minimum width for responsiveness */
     background-color: #ffdaad;
-    
+    font-size: 0.8125rem; /* Base font size for mobile (13px) */
 }
 
+/* --- HERO SECTION --- */
 #hero {
     height: 100vh;
     position: relative;
@@ -52,37 +53,47 @@ body {
 .hero-content {
     position: relative;
     z-index: 1;
-    padding: 2rem;
-    max-width: 80%;
+    padding: 1.5rem; /* Reduced padding for mobile */
+    max-width: 95%; /* Increased max-width for mobile */
+}
+.hero-content h1 {
+    font-size: 1.6rem; /* Smaller font for mobile */
+    margin-bottom: 0.5rem;
+}
+.hero-content p {
+    font-size: 0.9rem; /* Smaller font for mobile */
 }
 
+/* --- PRODUK SECTION --- */
 #produk {
-    padding: 4rem 0;
+    padding: 2rem 0.8rem; /* Reduced padding for mobile */
     text-align: center;
     background-color: #f8f9fa;
 }
 
 .produk-slider {
-    max-width: 1200px;
+    max-width: 75rem; /* 1200px */
     margin: 0 auto;
-    padding: 0 50px; /* Memberi ruang untuk tombol navigasi */
-    position: relative; /* Penting untuk penempatan tombol navigasi */
+    padding: 0 0.625rem; /* 10px - Reduced padding for mobile */
+    position: relative;
 }
 
 .produk-slider .swiper-slide {
     display: flex;
     justify-content: center;
-    padding-bottom: 2rem; /* Ruang untuk pagination/scrollbar jika ada */
+    padding-bottom: 1.5rem; /* Reduced padding for mobile */
 }
 
 .produk-item {
     border: 0.0625rem solid #e9ecef; /* 1px */
     border-radius: 0.5rem; /* 8px */
-    padding: 1.5rem;
-    width: 280px; /* Keeping px for fixed width, assuming this is desired */
+    padding: 1rem; /* Reduced padding for mobile */
+    width: 17.5rem; /* 280px - Keeping fixed width for now, will adjust with media queries if needed */
+    max-width: 100%; /* Ensure it fits smaller screens */
     background-color: white;
     box-shadow: 0 0.25rem 0.5rem rgba(0,0,0,0.05); /* 0 4px 8px */
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin: 0 auto; /* Center items in slider if width < 100% */
 }
 
 .produk-item:hover {
@@ -90,35 +101,35 @@ body {
     box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.1); /* 0 8px 16px */
 }
 
-
 .produk-item img {
     max-width: 100%;
-    height: 11.25rem; /* 180px */
+    height: 9rem; /* 144px - Reduced height for mobile */
     object-fit: cover;
     border-radius: 0.3125rem; /* 5px */
-    margin-bottom: 1rem;
+    margin-bottom: 0.8rem; /* Reduced margin */
 }
 
 .produk-item h3 {
     margin: 0.5rem 0;
+    font-size: 1rem; /* Smaller font for mobile */
 }
 
 .produk-item p {
-    font-size: 1.1rem;
+    font-size: 1rem; /* Smaller font for mobile */
     font-weight: bold;
     color: #007bff;
-    margin-bottom: 1rem;
+    margin-bottom: 0.8rem; /* Reduced margin */
 }
 
 .produk-item button {
     background-color: #28a745;
     color: white;
     border: none;
-    padding: 0.75rem 1.5rem;
+    padding: 0.6rem 1rem; /* Reduced padding for mobile */
     border-radius: 0.3125rem; /* 5px */
     cursor: pointer;
     width: 100%;
-    font-size: 1rem;
+    font-size: 0.9rem; /* Smaller font for mobile */
     transition: background-color 0.3s;
 }
 
@@ -129,17 +140,20 @@ body {
 /* Penyesuaian Tombol Navigasi Swiper */
 .swiper-button-next, .swiper-button-prev {
     color: #007bff;
+    font-size: 1.5rem; /* Smaller for mobile */
 }
 
+/* --- PEMBELIAN (FORM) SECTION --- */
 #pembelian {
-    padding: 4rem 2rem;
+    padding: 2.5rem 0.8rem; /* Reduced padding for mobile */
     text-align: center;
 }
 
 #form-pembelian {
-    max-width: 500px;
+    max-width: 25rem; /* 400px - Adjusted for mobile */
     margin: 0 auto;
     text-align: left;
+    padding: 0 0.8rem; /* Added inner padding for mobile */
 }
 
 #form-pembelian label, 
@@ -149,31 +163,37 @@ body {
 #pembelian label,
 #pembelian select {
     display: block;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.4rem; /* Reduced margin for mobile */
+    font-size: 0.9rem; /* Smaller font for mobile labels */
+}
+#form-pembelian h3 {
+    font-size: 1.1rem; /* Smaller font for mobile */
 }
 
 #form-pembelian input,
 #form-pembelian textarea,
 #pembelian select {
     width: 100%;
-    padding: 0.5rem;
-    margin-bottom: 1rem;
+    padding: 0.6rem; /* Reduced padding for mobile */
+    margin-bottom: 0.8rem; /* Reduced margin for mobile */
     box-sizing: border-box;
     border: 0.0625rem solid #ced4da; /* 1px */
     border-radius: 0.25rem; /* 4px */
+    font-size: 0.9rem; /* Smaller font for mobile inputs */
 }
 
 #form-pembelian button,
 #pembelian button {
     width: 100%;
-    padding: 0.75rem;
-    margin-bottom: 0.5rem;
+    padding: 0.6rem; /* Reduced padding for mobile */
+    margin-bottom: 0.4rem;
     background-color: #007bff;
     color: white;
     border: none;
     border-radius: 0.3125rem; /* 5px */
     cursor: pointer;
     transition: background-color 0.2s;
+    font-size: 0.95rem; /* Smaller font for mobile buttons */
 }
 
 #form-pembelian button:hover,
@@ -189,24 +209,24 @@ body {
 }
 
 #location-status {
-    font-size: 0.9em;
+    font-size: 0.8rem; /* Smaller font for mobile */
     color: #6c757d;
-    margin-top: -0.5rem;
-    margin-bottom: 1rem;
+    margin-top: -0.3rem; /* Adjusted margin */
+    margin-bottom: 0.8rem; /* Adjusted margin */
 }
 
 hr {
     border: 0;
     border-top: 0.0625rem solid #eee; /* 1px */
-    margin: 2rem 0;
+    margin: 1.5rem 0; /* Reduced margin for mobile */
 }
 
 #price-display {
-    margin-top: 1rem;
-    font-size: 1.2em;
+    margin-top: 0.8rem; /* Reduced margin */
+    font-size: 1.1rem; /* Smaller font for mobile */
     font-weight: bold;
     color: #28a745;
-    margin-bottom: 1rem;
+    margin-bottom: 0.8rem; /* Reduced margin */
 }
 
 #price-display span {
@@ -223,18 +243,20 @@ hr {
 #cart-items {
     border: 0.0625rem solid #e9ecef; /* 1px */
     border-radius: 0.5rem; /* 8px */
-    padding: 1rem;
-    margin-top: 1rem;
+    padding: 0.8rem; /* Reduced padding for mobile */
+    margin-top: 0.8rem; /* Reduced margin */
     min-height: 3.125rem; /* 50px */
     text-align: left;
 }
 
 .cart-item {
     display: flex;
+    flex-direction: column; /* Stack on mobile */
     justify-content: space-between;
-    align-items: center;
-    padding: 0.5rem 0;
+    align-items: flex-start; /* Align left for stacked items */
+    padding: 0.4rem 0; /* Reduced padding */
     border-bottom: 0.0625rem solid #f8f9fa; /* 1px */
+    font-size: 0.9rem; /* Smaller font */
 }
 
 .cart-item:last-child {
@@ -243,15 +265,16 @@ hr {
 
 .cart-item span {
     flex-grow: 1;
+    margin-bottom: 0.2rem; /* Space between stacked text and button */
 }
 
 .cart-item .remove-from-cart {
     width: auto;
-    padding: 0.3rem 0.6rem;
-    margin-left: 1rem;
+    padding: 0.2rem 0.5rem; /* Reduced padding */
+    margin-left: 0; /* Remove margin for stacked items */
     background-color: #dc3545;
     color: white;
-    font-size: 0.8em;
+    font-size: 0.7rem; /* Smaller font */
 }
 .cart-item .remove-from-cart:hover {
     background-color: #c82333;
@@ -260,15 +283,15 @@ hr {
 #cart-total {
     display: block;
     text-align: right;
-    font-size: 1.3em;
+    font-size: 1.2rem; /* Smaller font for mobile */
     font-weight: bold;
-    margin-top: 1rem;
+    margin-top: 0.8rem; /* Reduced margin */
     color: #007bff;
 }
 
 #btn-finish-order {
     background-color: #007bff;
-    margin-top: 1rem;
+    margin-top: 0.8rem; /* Reduced margin */
 }
 #btn-finish-order:hover {
     background-color: #0056b3;
@@ -281,7 +304,7 @@ hr {
     background-color: #c82333;
 }
 
-/* Step 2: Mobile-first base styles for #order-summary and .summary-content */
+/* --- ORDER SUMMARY MODAL --- */
 #order-summary {
     position: fixed;
     top: 0;
@@ -293,7 +316,6 @@ hr {
     justify-content: center;
     align-items: center;
     z-index: 100;
-    /* No padding here, use margin/padding on .summary-content itself */
 }
 
 #order-summary.hidden {
@@ -309,7 +331,7 @@ hr {
 
     /* Mobile-first specific size and overflow control */
     width: 90vw; /* Take 90% of viewport width */
-    max-width: 22.5rem; /* Max width for mobile (e.g., 360px), using rem */
+    max-width: 22.5rem; /* 360px - Max width for mobile, using rem */
     max-height: 90vh; /* Limit height to prevent overflow on screen */
     overflow-y: auto; /* Enable vertical scrolling if content is too long */
     padding: 1.25rem; /* 20px, reduced padding for smaller screens */
@@ -380,61 +402,135 @@ hr {
 
 
 /* -------------------------------------------------------------------------- */
-/* Responsive Styles for Storefront (excluding admin specific) */
+/* Responsive Styles using Modern Breakpoints */
 /* -------------------------------------------------------------------------- */
 
-/* Step 3: Tablet breakpoint (576px–768px) */
-@media (min-width: 36rem) and (max-width: 48rem) { /* 576px and 768px in rem */
+/* Tablet breakpoint: 576px–768px (min-width: 36rem and max-width: 48rem) */
+@media (min-width: 36rem) { /* min-width: 576px */
     body {
-        font-size: 0.875rem; /* 14px */
+        font-size: 0.875rem; /* Base font size for tablet (14px) */
     }
 
-    /* Adjust padding for main sections */
-    #produk, #pembelian {
-        padding: 3rem 1.5rem;
-    }
-
-    /* Hero section content */
+    /* --- HERO SECTION --- */
     .hero-content {
-        max-width: 90%;
-        padding: 1.5rem;
+        padding: 2rem;
+        max-width: 80%;
     }
     .hero-content h1 {
-        font-size: 2em;
+        font-size: 2rem; /* Larger font for tablet */
     }
     .hero-content p {
-        font-size: 1em;
+        font-size: 1rem; /* Larger font for tablet */
     }
 
-    /* Product Slider adjustments */
+    /* --- PRODUK SECTION --- */
+    #produk {
+        padding: 3rem 1.5rem;
+    }
     .produk-slider {
-        padding: 0 15px; /* Reduced padding for tablets */
+        padding: 0 1.5rem; /* 24px - Reduced padding for tablets */
+    }
+    .produk-item {
+        padding: 1.25rem; /* 20px */
+        width: 18.75rem; /* 300px */
+    }
+    .produk-item img {
+        height: 10rem; /* 160px */
+    }
+    .produk-item h3 {
+        font-size: 1.1rem;
+    }
+    .produk-item p {
+        font-size: 1.1rem;
+    }
+    .produk-item button {
+        padding: 0.75rem 1.5rem;
+        font-size: 1rem;
+    }
+    .swiper-button-next, .swiper-button-prev {
+        font-size: 2rem;
     }
 
-    /* Order form adjustments */
+    /* --- PEMBELIAN (FORM) SECTION --- */
+    #pembelian {
+        padding: 3.5rem 1.5rem;
+    }
     #form-pembelian {
-        padding: 0 1rem; /* Reduced for tablet */
-        max-width: 31.25rem; /* 500px, if keeping a fixed max-width */
+        max-width: 31.25rem; /* 500px */
+        padding: 0 1rem;
+    }
+    #form-pembelian label, 
+    #form-pembelian input, 
+    #form-pembelian textarea,
+    #form-pembelian h3,
+    #pembelian label,
+    #pembelian select {
+        margin-bottom: 0.5rem;
+        font-size: 1rem;
+    }
+    #form-pembelian h3 {
+        font-size: 1.25rem;
+    }
+    #form-pembelian input,
+    #form-pembelian textarea,
+    #pembelian select {
+        padding: 0.75rem;
+        margin-bottom: 1rem;
+        font-size: 1rem;
+    }
+    #form-pembelian button,
+    #pembelian button {
+        padding: 0.75rem;
+        margin-bottom: 0.5rem;
+        font-size: 1rem;
+    }
+    #location-status {
+        font-size: 0.9rem;
+        margin-top: -0.5rem;
+        margin-bottom: 1rem;
+    }
+    hr {
+        margin: 2rem 0;
+    }
+    #price-display {
+        margin-top: 1rem;
+        font-size: 1.2em;
+        margin-bottom: 1rem;
     }
 
-    /* Cart items */
+    /* --- CART ITEMS --- */
+    #cart-items {
+        padding: 1rem;
+        margin-top: 1rem;
+    }
     .cart-item {
-        flex-direction: row; /* Default for medium */
-        justify-content: space-between;
+        flex-direction: row; /* Back to row for tablet */
         align-items: center;
+        padding: 0.5rem 0;
+        font-size: 1rem;
+    }
+    .cart-item span {
+        margin-bottom: 0;
     }
     .cart-item .remove-from-cart {
-        margin-top: 0;
         margin-left: 1rem;
+        padding: 0.3rem 0.6rem;
+        font-size: 0.8rem;
+    }
+    #cart-total {
+        font-size: 1.3em;
+        margin-top: 1rem;
+    }
+    #btn-finish-order, #btn-clear-cart {
+        margin-top: 1rem;
     }
 
-    /* Order Summary specific adjustments for Tablet */
+    /* --- ORDER SUMMARY MODAL for Tablet --- */
     .summary-content {
         width: 80vw; /* Take 80% of viewport width */
-        max-width: 37.5rem; /* 600px, Wider for tablets */
+        max-width: 37.5rem; /* 600px - Wider for tablets */
         padding: 1.5rem; /* Slightly larger padding */
     }
-
     .summary-content h2 {
         font-size: 1.5rem; /* Larger font */
     }
@@ -450,34 +546,129 @@ hr {
     }
 }
 
-/* Step 4: Desktop breakpoint (769px–1200px) */
-@media (min-width: 48.0625rem) and (max-width: 75rem) { /* 769px and 1200px in rem */
+/* Desktop breakpoint: 769px–1200px (min-width: 48.0625rem and max-width: 75rem) */
+@media (min-width: 48.0625rem) { /* min-width: 769px */
     body {
-        font-size: 0.9375rem; /* 15px */
+        font-size: 0.9375rem; /* Base font size for desktop (15px) */
     }
-    /* Common desktop adjustments */
-    #produk, #pembelian {
-        padding: 4rem 2rem;
-    }
+
+    /* --- HERO SECTION --- */
     .hero-content {
-        max-width: 80%;
-        padding: 2rem;
+        padding: 2.5rem;
     }
     .hero-content h1 {
-        font-size: 2.5em;
+        font-size: 2.2rem;
     }
     .hero-content p {
-        font-size: 1.1em;
+        font-size: 1.1rem;
+    }
+
+    /* --- PRODUK SECTION --- */
+    #produk {
+        padding: 4rem 2rem;
+    }
+    .produk-slider {
+        padding: 0 50px; /* Original padding */
+    }
+    .produk-item {
+        padding: 1.5rem;
+        width: 17.5rem; /* 280px */
+    }
+    .produk-item img {
+        height: 11.25rem; /* 180px */
+    }
+    .produk-item h3 {
+        font-size: 1.1rem;
+    }
+    .produk-item p {
+        font-size: 1.1rem;
+    }
+    .produk-item button {
+        padding: 0.75rem 1.5rem;
+        font-size: 1rem;
+    }
+    .swiper-button-next, .swiper-button-prev {
+        font-size: 2.5rem;
+    }
+
+    /* --- PEMBELIAN (FORM) SECTION --- */
+    #pembelian {
+        padding: 4rem 2rem;
     }
     #form-pembelian {
         max-width: 31.25rem; /* 500px */
         padding: 0;
     }
+    #form-pembelian label, 
+    #form-pembelian input, 
+    #form-pembelian textarea,
+    #form-pembelian h3,
+    #pembelian label,
+    #pembelian select {
+        margin-bottom: 0.5rem;
+        font-size: 1rem;
+    }
+    #form-pembelian h3 {
+        font-size: 1.5rem;
+    }
+    #form-pembelian input,
+    #form-pembelian textarea,
+    #pembelian select {
+        padding: 0.5rem;
+        margin-bottom: 1rem;
+        font-size: 1rem;
+    }
+    #form-pembelian button,
+    #pembelian button {
+        padding: 0.75rem;
+        margin-bottom: 0.5rem;
+        font-size: 1rem;
+    }
+    #location-status {
+        font-size: 0.9rem;
+        margin-top: -0.5rem;
+        margin-bottom: 1rem;
+    }
+    hr {
+        margin: 2rem 0;
+    }
+    #price-display {
+        margin-top: 1rem;
+        font-size: 1.2em;
+        margin-bottom: 1rem;
+    }
 
-    /* Order Summary specific adjustments for Desktop */
+    /* --- CART ITEMS --- */
+    #cart-items {
+        padding: 1rem;
+        margin-top: 1rem;
+    }
+    .cart-item {
+        flex-direction: row;
+        align-items: center;
+        padding: 0.5rem 0;
+        font-size: 1rem;
+    }
+    .cart-item span {
+        margin-bottom: 0;
+    }
+    .cart-item .remove-from-cart {
+        margin-left: 1rem;
+        padding: 0.3rem 0.6rem;
+        font-size: 0.8rem;
+    }
+    #cart-total {
+        font-size: 1.3em;
+        margin-top: 1rem;
+    }
+    #btn-finish-order, #btn-clear-cart {
+        margin-top: 1rem;
+    }
+
+    /* --- ORDER SUMMARY MODAL for Desktop --- */
     .summary-content {
         width: 70vw; /* Take 70% of viewport width */
-        max-width: 31.25rem; /* 500px, original desktop max-width */
+        max-width: 31.25rem; /* 500px - original desktop max-width */
         padding: 2rem; /* Original padding */
     }
     .summary-content h2 {
@@ -495,47 +686,29 @@ hr {
     }
 }
 
-/* Optional: Large Desktop (1201px and up) - to ensure consistent large screen behavior */
-@media (min-width: 75.0625rem) { /* 1201px in rem */
+/* Large Desktop breakpoint: 1201px and up (min-width: 75.0625rem) */
+@media (min-width: 75.0625rem) { /* min-width: 1201px */
     body {
-        font-size: 1rem; /* 16px */
-    }
-    /* Ensure desktop styles are maintained */
-    #produk, #pembelian {
-        padding: 4rem 2rem;
-    }
-    .hero-content {
-        max-width: 80%;
-        padding: 2rem;
-    }
-    .hero-content h1 {
-        font-size: 2.5em;
-    }
-    .hero-content p {
-        font-size: 1.1em;
-    }
-    #form-pembelian {
-        max-width: 31.25rem; /* 500px */
-        padding: 0;
+        font-size: 1rem; /* Base font size for large desktop (16px) */
     }
 
-    /* Order Summary specific adjustments for Large Desktop */
+    /* --- HERO SECTION --- */
+    .hero-content h1 {
+        font-size: 2.5rem; /* Larger font for large desktop */
+    }
+
+    /* --- PRODUK SECTION --- */
+    .produk-item {
+        width: 17.5rem; /* 280px */
+    }
+    .produk-item img {
+        height: 11.25rem; /* 180px */
+    }
+
+    /* --- ORDER SUMMARY MODAL for Large Desktop --- */
     .summary-content {
         width: 60vw; /* Adjust width for very large screens */
         max-width: 31.25rem; /* 500px */
         padding: 2rem;
-    }
-    .summary-content h2 {
-        font-size: 1.8rem;
-    }
-    .summary-content h3 {
-        font-size: 1.4rem;
-    }
-    .summary-content p, .summary-content ul li {
-        font-size: 1rem;
-    }
-    .summary-content button {
-        padding: 0.75rem 1.5rem;
-        font-size: 1rem;
     }
 }
