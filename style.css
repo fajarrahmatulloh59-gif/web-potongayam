@@ -1,24 +1,66 @@
-/* style.css */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
-/* Universal Box Sizing */
+/* CSS Variables for consistent color palette */
+:root {
+    --color-primary: #4CAF50; /* Green */
+    --color-accent: #FFC107; /* Yellow */
+    --color-white: #FFFFFF;
+    --color-light-gray: #F5F5F5;
+    --color-medium-gray: #E0E0E0;
+    --color-dark-gray: #333333;
+    --color-text-light: #666666;
+    --color-error: #dc3545; /* Red for errors/cancel */
+
+    --shadow-soft: 0 4px 12px rgba(0, 0, 0, 0.08);
+    --shadow-medium: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+/* Universal Box Sizing & Base Styles */
 *, *::before, *::after {
     box-sizing: border-box;
 }
 
-/* Step 1: Set a base font size for html for rem calculations */
 html {
     font-size: 16px; /* Base for rem units: 1rem = 16px */
-    overflow-x: hidden; /* Disable horizontal scrolling for the entire website */
+    overflow-x: hidden;
+    scroll-behavior: smooth;
 }
 
 body {
-    font-family: sans-serif;
+    font-family: 'Poppins', sans-serif;
     margin: 0;
-    height: 100%; /* Pastikan html dan body mengambil seluruh tinggi viewport */
+    line-height: 1.6;
+    color: var(--color-dark-gray);
+    background-color: var(--color-light-gray); /* Soft background */
     min-width: 20rem; /* 320px - Minimum width for responsiveness */
-    background-color: #ffdaad;
-    font-size: 0.8125rem; /* Base font size for mobile (13px) */
-    overflow-x: hidden; /* Disable horizontal scrolling for the entire website */
+    overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 600;
+    line-height: 1.2;
+    margin-top: 0;
+    margin-bottom: 0.8rem;
+    color: var(--color-dark-gray);
+}
+
+p {
+    margin-bottom: 1rem;
+}
+
+a {
+    color: var(--color-primary);
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+
+button {
+    font-family: 'Poppins', sans-serif;
+    cursor: pointer;
+    border: none;
+    transition: all 0.3s ease;
 }
 
 /* Body scroll lock when modal is open */
@@ -26,11 +68,122 @@ body.modal-open {
     overflow: hidden; /* Lock background scroll */
 }
 
+/* Utility Classes */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Components                                                                 */
+/* -------------------------------------------------------------------------- */
+
+/* Buttons */
+.btn {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 500;
+    border-radius: 0.5rem; /* Rounded buttons */
+    text-align: center;
+    vertical-align: middle;
+    user-select: none;
+    white-space: nowrap;
+}
+
+.btn-primary {
+    background-color: var(--color-primary);
+    color: var(--color-white);
+}
+.btn-primary:hover {
+    background-color: #43A047; /* Slightly darker green */
+    box-shadow: var(--shadow-soft);
+}
+
+.btn-secondary {
+    background-color: var(--color-medium-gray);
+    color: var(--color-dark-gray);
+}
+.btn-secondary:hover {
+    background-color: #C0C0C0;
+    box-shadow: var(--shadow-soft);
+}
+
+.btn-danger {
+    background-color: var(--color-error);
+    color: var(--color-white);
+}
+.btn-danger:hover {
+    background-color: #C62828; /* Slightly darker red */
+    box-shadow: var(--shadow-soft);
+}
+
+/* Form Elements */
+input[type="text"],
+input[type="tel"],
+input[type="number"],
+input[type="email"],
+textarea,
+select {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    margin-bottom: 1rem;
+    border: 1px solid var(--color-medium-gray);
+    border-radius: 0.5rem; /* Rounded inputs */
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    color: var(--color-dark-gray);
+    background-color: var(--color-white);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="tel"]:focus,
+input[type="number"]:focus,
+input[type="email"]:focus,
+textarea:focus,
+select:focus {
+    border-color: var(--color-primary);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2); /* Soft primary focus ring */
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: var(--color-dark-gray);
+}
+
+hr {
+    border: none;
+    border-top: 1px solid var(--color-medium-gray);
+    margin: 2.5rem 0;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Sections                                                                   */
+/* -------------------------------------------------------------------------- */
+
 /* --- HERO SECTION --- */
 #hero {
     height: 100vh;
     position: relative;
-    color: white;
+    color: var(--color-white);
+    display: flex; /* Use flexbox to center content */
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden; /* Ensure content doesn't bleed */
 }
 
 .hero-slider, .hero-slider .swiper-wrapper, .hero-slider .swiper-slide {
@@ -41,11 +194,13 @@ body.modal-open {
 .hero-slider .swiper-slide {
     background-size: cover;
     background-position: center;
+    background-image: url('web img/bg 1.jpg'); /* Default placeholder background */
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
 }
+
 
 .hero-slider .swiper-slide::before {
     content: '';
@@ -54,216 +209,223 @@ body.modal-open {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.6); /* Darker overlay */
+    z-index: 0; /* Ensure overlay is behind text but above image */
 }
 
 .hero-content {
     position: relative;
     z-index: 1;
-    padding: 1.5rem; /* Reduced padding for mobile */
-    max-width: 95%; /* Increased max-width for mobile */
+    padding: 2rem 1rem;
+    max-width: 900px;
 }
 .hero-content h1 {
-    font-size: 1.6rem; /* Smaller font for mobile */
-    margin-bottom: 0.5rem;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 0.8rem;
+    color: var(--color-white);
+    text-shadow: 0 2px 4px rgba(0,0,0,0.4);
 }
 .hero-content p {
-    font-size: 0.9rem; /* Smaller font for mobile */
+    font-size: 1.2rem;
+    font-weight: 300;
+    margin-bottom: 1.5rem;
+    color: rgba(255, 255, 255, 0.9);
 }
+/* Placeholder for CTA button in hero, assuming it might be added or JS provides it */
+.hero-content .btn {
+    margin-top: 1rem;
+}
+
 
 /* --- PRODUK SECTION --- */
 #produk {
-    padding: 2rem 0.8rem; /* Reduced padding for mobile */
+    padding: 4rem 1rem;
     text-align: center;
-    background-color: #f8f9fa;
+    background-color: var(--color-white); /* Clean white background */
+}
+
+#produk > h2 {
+    font-size: 2rem;
+    margin-bottom: 2.5rem;
+    color: var(--color-dark-gray);
 }
 
 .produk-slider {
-    max-width: 75rem; /* 1200px */
+    max-width: 1300px; /* Slightly wider */
     margin: 0 auto;
-    padding: 0 0.625rem; /* 10px - Reduced padding for mobile */
+    padding: 0 1rem;
     position: relative;
 }
 
 .produk-slider .swiper-slide {
     display: flex;
     justify-content: center;
-    padding-bottom: 1.5rem; /* Reduced padding for mobile */
+    padding-bottom: 2.5rem; /* Space for pagination/shadows */
 }
 
 .produk-item {
-    border: 0.0625rem solid #e9ecef; /* 1px */
-    border-radius: 0.5rem; /* 8px */
-    padding: 1rem; /* Reduced padding for mobile */
-    width: 17.5rem; /* 280px - Keeping fixed width for now, will adjust with media queries if needed */
-    max-width: 100%; /* Ensure it fits smaller screens */
-    background-color: white;
-    box-shadow: 0 0.25rem 0.5rem rgba(0,0,0,0.05); /* 0 4px 8px */
+    background-color: var(--color-white);
+    border-radius: 0.75rem; /* More rounded corners */
+    padding: 1.5rem;
+    width: 18.5rem; /* Slightly wider cards */
+    max-width: 100%;
+    box-shadow: var(--shadow-soft); /* Soft shadow */
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    margin: 0 auto; /* Center items in slider if width < 100% */
+    margin: 0 auto;
+    display: flex; /* Use flex for internal layout */
+    flex-direction: column;
+    align-items: center;
 }
 
 .produk-item:hover {
-    transform: translateY(-0.3125rem); /* -5px */
-    box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.1); /* 0 8px 16px */
+    transform: translateY(-0.5rem); /* Lift effect */
+    box-shadow: var(--shadow-medium); /* Enhanced shadow on hover */
 }
 
 .produk-item img {
     max-width: 100%;
-    height: 9rem; /* 144px - Reduced height for mobile */
+    height: 10rem; /* Fixed height for consistency */
     object-fit: cover;
-    border-radius: 0.3125rem; /* 5px */
-    margin-bottom: 0.8rem; /* Reduced margin */
+    border-radius: 0.5rem; /* Rounded image corners */
+    margin-bottom: 1rem;
+    border: 1px solid var(--color-light-gray);
 }
 
 .produk-item h3 {
     margin: 0.5rem 0;
-    font-size: 1rem; /* Smaller font for mobile */
-}
-
-.produk-item p {
-    font-size: 1rem; /* Smaller font for mobile */
-    font-weight: bold;
-    color: #007bff;
-    margin-bottom: 0.8rem; /* Reduced margin */
-}
-
-.produk-item button {
-    background-color: #28a745;
-    color: white;
-    border: none;
-    padding: 0.6rem 1rem; /* Reduced padding for mobile */
-    border-radius: 0.3125rem; /* 5px */
-    cursor: pointer;
-    width: 100%;
-    font-size: 0.9rem; /* Smaller font for mobile */
-    transition: background-color 0.3s;
-}
-
-.produk-item button:hover {
-    background-color: #218838;
-}
-
-/* Penyesuaian Tombol Navigasi Swiper */
-.swiper-button-next, .swiper-button-prev {
-    color: #007bff;
-    font-size: 1.5rem; /* Smaller for mobile */
-}
-
-/* --- PEMBELIAN (FORM) SECTION --- */
-#pembelian {
-    padding: 2.5rem 0.8rem; /* Reduced padding for mobile */
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--color-dark-gray);
     text-align: center;
 }
 
+.produk-item p {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--color-accent); /* Accent yellow for price */
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.produk-item button {
+    margin-top: auto; /* Push button to the bottom */
+    width: 100%;
+    /* Reusing .btn styles */
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    padding: 0.75rem 1.2rem;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    font-weight: 500;
+}
+.produk-item button:hover {
+    background-color: #43A047; /* Slightly darker green */
+    box-shadow: var(--shadow-soft);
+}
+
+/* Swiper Navigation Buttons */
+.swiper-button-next, .swiper-button-prev {
+    color: var(--color-primary);
+    font-size: 2.2rem;
+    width: 40px; /* Adjust size */
+    height: 40px; /* Adjust size */
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.7);
+    transition: background-color 0.3s ease;
+}
+.swiper-button-next:hover, .swiper-button-prev:hover {
+    background-color: rgba(255, 255, 255, 1);
+}
+.swiper-button-next::after, .swiper-button-prev::after {
+    font-size: 1.2rem; /* Adjust icon size */
+    font-weight: 700;
+}
+
+
+/* --- PEMBELIAN (FORM) SECTION --- */
+#pembelian {
+    padding: 4rem 1rem;
+    text-align: center;
+    background-color: var(--color-light-gray); /* Light gray for section background */
+}
+
+#pembelian > h2 {
+    font-size: 2rem;
+    margin-bottom: 2.5rem;
+    color: var(--color-dark-gray);
+}
+
 #form-pembelian {
-    max-width: 25rem; /* 400px - Adjusted for mobile */
-    margin: 0 auto;
+    max-width: 600px;
+    margin: 0 auto 3rem auto; /* Added margin-bottom */
     text-align: left;
-    padding: 0 0.8rem; /* Added inner padding for mobile */
+    padding: 2rem;
+    background-color: var(--color-white);
+    border-radius: 1rem; /* Card-like */
+    box-shadow: var(--shadow-soft);
 }
 
-#form-pembelian label, 
-#form-pembelian input, 
-#form-pembelian textarea,
-#form-pembelian h3,
-#pembelian label,
-#pembelian select {
-    display: block;
-    margin-bottom: 0.4rem; /* Reduced margin for mobile */
-    font-size: 0.9rem; /* Smaller font for mobile labels */
-}
-#form-pembelian h3 {
-    font-size: 1.1rem; /* Smaller font for mobile */
-}
-
-#form-pembelian input,
-#form-pembelian textarea,
-#pembelian select {
-    width: 100%;
-    padding: 0.6rem; /* Reduced padding for mobile */
-    margin-bottom: 0.8rem; /* Reduced margin for mobile */
-    box-sizing: border-box;
-    border: 0.0625rem solid #ced4da; /* 1px */
-    border-radius: 0.25rem; /* 4px */
-    font-size: 0.9rem; /* Smaller font for mobile inputs */
-}
-
-#form-pembelian button,
-#pembelian button {
-    width: 100%;
-    padding: 0.6rem; /* Reduced padding for mobile */
-    margin-bottom: 0.4rem;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 0.3125rem; /* 5px */
-    cursor: pointer;
-    transition: background-color 0.2s;
-    font-size: 0.95rem; /* Smaller font for mobile buttons */
-}
-
-#form-pembelian button:hover,
-#pembelian button:hover {
-    background-color: #0056b3;
-}
-
-#btn-share-location {
-    background-color: #6c757d;
-}
-#btn-share-location:hover {
-    background-color: #5a6268;
-}
-
-#location-status {
-    font-size: 0.8rem; /* Smaller font for mobile */
-    color: #6c757d;
-    margin-top: -0.3rem; /* Adjusted margin */
-    margin-bottom: 0.8rem; /* Adjusted margin */
-}
-
-hr {
-    border: 0;
-    border-top: 0.0625rem solid #eee; /* 1px */
-    margin: 1.5rem 0; /* Reduced margin for mobile */
+#form-pembelian label {
+    margin-bottom: 0.8rem; /* Increased margin */
 }
 
 #price-display {
-    margin-top: 0.8rem; /* Reduced margin */
-    font-size: 1.1rem; /* Smaller font for mobile */
-    font-weight: bold;
-    color: #28a745;
-    margin-bottom: 0.8rem; /* Reduced margin */
+    margin-top: 1.5rem;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--color-dark-gray);
+    margin-bottom: 1.5rem;
+    text-align: left;
 }
 
 #price-display span {
-    color: #007bff;
+    color: var(--color-accent); /* Accent yellow for price */
+    font-weight: 700;
 }
 
 #btn-add-to-cart {
-    background-color: #28a745;
+    width: 100%;
+    /* Reusing .btn styles */
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
 }
 #btn-add-to-cart:hover {
-    background-color: #218838;
+    background-color: #43A047;
+    box-shadow: var(--shadow-soft);
 }
 
+/* Cart Section */
 #cart-items {
-    border: 0.0625rem solid #e9ecef; /* 1px */
-    border-radius: 0.5rem; /* 8px */
-    padding: 0.8rem; /* Reduced padding for mobile */
-    margin-top: 0.8rem; /* Reduced margin */
-    min-height: 3.125rem; /* 50px */
+    max-width: 600px;
+    margin: 2.5rem auto 1.5rem auto;
+    background-color: var(--color-white);
+    border-radius: 1rem;
+    box-shadow: var(--shadow-soft);
+    padding: 1.5rem;
     text-align: left;
+    min-height: 5rem;
+}
+
+#cart-items > p { /* For "Keranjang kosong" message */
+    font-style: italic;
+    color: var(--color-text-light);
+    text-align: center;
+    margin: 1rem 0;
 }
 
 .cart-item {
     display: flex;
-    flex-direction: column; /* Stack on mobile */
     justify-content: space-between;
-    align-items: flex-start; /* Align left for stacked items */
-    padding: 0.4rem 0; /* Reduced padding */
-    border-bottom: 0.0625rem solid #f8f9fa; /* 1px */
-    font-size: 0.9rem; /* Smaller font */
+    align-items: center;
+    padding: 0.8rem 0;
+    border-bottom: 1px dashed var(--color-medium-gray);
+    font-size: 1rem;
 }
 
 .cart-item:last-child {
@@ -272,57 +434,73 @@ hr {
 
 .cart-item span {
     flex-grow: 1;
-    margin-bottom: 0.2rem; /* Space between stacked text and button */
+    margin-right: 1rem; /* Space between text and button */
 }
 
 .cart-item .remove-from-cart {
-    width: auto;
-    padding: 0.2rem 0.5rem; /* Reduced padding */
-    margin-left: 0; /* Remove margin for stacked items */
-    background-color: #dc3545;
-    color: white;
-    font-size: 0.7rem; /* Smaller font */
+    flex-shrink: 0;
+    /* Reusing .btn-danger styles */
+    background-color: var(--color-error);
+    color: var(--color-white);
+    padding: 0.3rem 0.6rem;
+    font-size: 0.85rem;
+    border-radius: 0.3rem;
 }
 .cart-item .remove-from-cart:hover {
-    background-color: #c82333;
+    background-color: #C62828;
 }
 
 #cart-total {
     display: block;
     text-align: right;
-    font-size: 1.2rem; /* Smaller font for mobile */
-    font-weight: bold;
-    margin-top: 0.8rem; /* Reduced margin */
-    color: #007bff;
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-top: 1.5rem;
+    color: var(--color-primary); /* Primary green for total */
 }
 
+#btn-finish-order, #btn-clear-cart {
+    width: 100%;
+    margin-top: 1rem;
+    /* Reusing .btn styles */
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    font-weight: 500;
+}
 #btn-finish-order {
-    background-color: #007bff;
-    margin-top: 0.8rem; /* Reduced margin */
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    margin-bottom: 0.8rem;
 }
 #btn-finish-order:hover {
-    background-color: #0056b3;
+    background-color: #43A047;
+    box-shadow: var(--shadow-soft);
 }
-
 #btn-clear-cart {
-    background-color: #dc3545;
+    background-color: var(--color-error);
+    color: var(--color-white);
 }
 #btn-clear-cart:hover {
-    background-color: #c82333;
+    background-color: #C62828;
+    box-shadow: var(--shadow-soft);
 }
+
 
 /* --- ORDER SUMMARY MODAL --- */
 #order-summary {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100vw; /* Use vw for full viewport width */
-    height: 100vh; /* Use vh for full viewport height */
-    background-color: rgba(0, 0, 0, 0.7);
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.7); /* Darker overlay */
+    backdrop-filter: blur(5px); /* Blur background effect */
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 100;
+    z-index: 1000; /* High z-index for modal */
+    padding: 1rem;
 }
 
 #order-summary.hidden {
@@ -330,49 +508,53 @@ hr {
 }
 
 .summary-content {
-    background-color: white;
-    border-radius: 0.625rem; /* 10px */
+    background-color: var(--color-white);
+    border-radius: 1rem; /* Modern rounded corners */
     text-align: left;
-    position: relative; /* For proper stacking context with overflow */
-    box-shadow: 0 0.25rem 1.25rem rgba(0, 0, 0, 0.15); /* Softer, slightly larger shadow */
+    position: relative;
+    box-shadow: var(--shadow-medium); /* More pronounced shadow */
 
-    /* Mobile-first specific size and overflow control */
-    width: 90vw; /* Take 90% of viewport width */
-    max-width: 22.5rem; /* 360px - Max width for mobile, using rem */
-    max-height: 90vh; /* Limit height to prevent overflow on screen */
-    overflow-y: auto; /* Enable vertical scrolling if content is too long */
-    padding: 1.25rem; /* 20px, reduced padding for smaller screens */
-    /* Safe area padding for mobile devices */
-    padding-bottom: calc(1.25rem + env(safe-area-inset-bottom));
+    width: 95vw;
+    max-width: 500px;
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: 2rem;
 }
 
-.summary-content h2,
-.summary-content h3 {
-    text-align: center;
-    margin-bottom: 0.8rem; /* Reduced margin for mobile */
-    font-size: 1.1rem; /* Smaller font for mobile h2/h3 */
-}
 .summary-content h2 {
-    font-size: 1.2rem;
+    font-size: 1.8rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: var(--color-primary); /* Primary color for modal title */
+}
+.summary-content h3 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--color-dark-gray);
 }
 
 .summary-content p {
-    margin-bottom: 0.4rem; /* Reduced margin for mobile */
-    font-size: 0.9rem; /* Smaller font for mobile paragraphs */
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+    color: var(--color-text-light);
 }
 
 .summary-content ul {
     list-style: none;
     padding: 0;
-    margin-bottom: 0.8rem; /* Reduced margin for mobile */
-    border-top: 0.0625rem solid #eee; /* 1px */
-    padding-top: 0.8rem; /* Reduced padding for mobile */
+    margin-bottom: 1.5rem;
+    border-top: 1px solid var(--color-medium-gray);
+    padding-top: 1rem;
 }
 
 .summary-content ul li {
-    padding: 0.3rem 0; /* Reduced padding for mobile list items */
-    border-bottom: 0.0625rem dashed #eee; /* 1px */
-    font-size: 0.9rem; /* Smaller font for mobile list items */
+    padding: 0.5rem 0;
+    border-bottom: 1px dashed var(--color-medium-gray);
+    font-size: 1rem;
+    color: var(--color-dark-gray);
 }
 
 .summary-content ul li:last-child {
@@ -380,347 +562,189 @@ hr {
 }
 
 .summary-content button {
-    margin-top: 0.8rem; /* Reduced margin for mobile buttons */
-    padding: 0.6rem 1rem; /* Reduced padding for mobile buttons */
-    border-radius: 0.3125rem; /* 5px */
-    cursor: pointer;
     width: 100%;
-    font-size: 0.9rem; /* Smaller font for mobile buttons */
-    margin-bottom: 0.4rem;
+    margin-top: 1.2rem;
+    /* Reusing .btn styles */
+    padding: 0.8rem 1.5rem;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    font-weight: 500;
 }
 
 #btn-whatsapp {
-    background-color: #28a745; /* WhatsApp green */
-    color: white;
-    border: none;
+    background-color: var(--color-primary); /* WhatsApp green */
+    color: var(--color-white);
+    margin-bottom: 0.8rem;
 }
-
 #btn-whatsapp:hover {
-    background-color: #218838;
+    background-color: #43A047;
+    box-shadow: var(--shadow-soft);
 }
 
-#btn-batal { /* This targets the cancel button in the summary */
-    background-color: #dc3545;
-    color: white;
-    border: none;
+#btn-batal {
+    background-color: var(--color-error);
+    color: var(--color-white);
 }
-
 #btn-batal:hover {
-    background-color: #c82333;
+    background-color: #C62828;
+    box-shadow: var(--shadow-soft);
 }
 
-
 /* -------------------------------------------------------------------------- */
-/* Responsive Styles using Modern Breakpoints */
+/* Responsive Styles (Adjusted for new design)                                */
 /* -------------------------------------------------------------------------- */
 
-/* Tablet breakpoint: 576px–768px (min-width: 36rem and max-width: 48rem) */
-@media (min-width: 36rem) { /* min-width: 576px */
+/* Tablet breakpoint */
+@media (min-width: 576px) {
     body {
-        font-size: 0.875rem; /* Base font size for tablet (14px) */
+        font-size: 0.9375rem; /* 15px */
     }
 
-    /* --- HERO SECTION --- */
-    .hero-content {
-        padding: 2rem;
-        max-width: 80%;
-    }
+    h1 { font-size: 2.8rem; }
+    h2 { font-size: 2.2rem; }
+    h3 { font-size: 1.5rem; }
+
+    /* Hero Section */
     .hero-content h1 {
-        font-size: 2rem; /* Larger font for tablet */
+        font-size: 3.5rem;
     }
     .hero-content p {
-        font-size: 1rem; /* Larger font for tablet */
+        font-size: 1.3rem;
     }
 
-    /* --- PRODUK SECTION --- */
+    /* Produk Section */
     #produk {
-        padding: 3rem 1.5rem;
+        padding: 6rem 1.5rem;
     }
-    .produk-slider {
-        padding: 0 1.5rem; /* 24px - Reduced padding for tablets */
-    }
-    .produk-item {
-        padding: 1.25rem; /* 20px */
-        width: 18.75rem; /* 300px */
-    }
-    .produk-item img {
-        height: 10rem; /* 160px */
-    }
-    .produk-item h3 {
-        font-size: 1.1rem;
-    }
-    .produk-item p {
-        font-size: 1.1rem;
-    }
-    .produk-item button {
-        padding: 0.75rem 1.5rem;
-        font-size: 1rem;
-    }
-    .swiper-button-next, .swiper-button-prev {
-        font-size: 2rem;
-    }
-
-    /* --- PEMBELIAN (FORM) SECTION --- */
-    #pembelian {
-        padding: 3.5rem 1.5rem;
-    }
-    #form-pembelian {
-        max-width: 31.25rem; /* 500px */
-        padding: 0 1rem;
-    }
-    #form-pembelian label, 
-    #form-pembelian input, 
-    #form-pembelian textarea,
-    #form-pembelian h3,
-    #pembelian label,
-    #pembelian select {
-        margin-bottom: 0.5rem;
-        font-size: 1rem;
-    }
-    #form-pembelian h3 {
-        font-size: 1.25rem;
-    }
-    #form-pembelian input,
-    #form-pembelian textarea,
-    #pembelian select {
-        padding: 0.75rem;
-        margin-bottom: 1rem;
-        font-size: 1rem;
-    }
-    #form-pembelian button,
-    #pembelian button {
-        padding: 0.75rem;
-        margin-bottom: 0.5rem;
-        font-size: 1rem;
-    }
-    #location-status {
-        font-size: 0.9rem;
-        margin-top: -0.5rem;
-        margin-bottom: 1rem;
-    }
-    hr {
-        margin: 2rem 0;
-    }
-    #price-display {
-        margin-top: 1rem;
-        font-size: 1.2em;
-        margin-bottom: 1rem;
-    }
-
-    /* --- CART ITEMS --- */
-    #cart-items {
-        padding: 1rem;
-        margin-top: 1rem;
-    }
-    .cart-item {
-        flex-direction: row; /* Back to row for tablet */
-        align-items: center;
-        padding: 0.5rem 0;
-        font-size: 1rem;
-    }
-    .cart-item span {
-        margin-bottom: 0;
-    }
-    .cart-item .remove-from-cart {
-        margin-left: 1rem;
-        padding: 0.3rem 0.6rem;
-        font-size: 0.8rem;
-    }
-    #cart-total {
-        font-size: 1.3em;
-        margin-top: 1rem;
-    }
-    #btn-finish-order, #btn-clear-cart {
-        margin-top: 1rem;
-    }
-
-    /* --- ORDER SUMMARY MODAL for Tablet --- */
-    .summary-content {
-        width: 80vw; /* Take 80% of viewport width */
-        max-width: 37.5rem; /* 600px - Wider for tablets */
-        padding: 1.5rem; /* Slightly larger padding */
-        padding-bottom: calc(1.5rem + env(safe-area-inset-bottom));
-    }
-    .summary-content h2 {
-        font-size: 1.5rem; /* Larger font */
-    }
-    .summary-content h3 {
-        font-size: 1.2rem; /* Larger font */
-    }
-    .summary-content p, .summary-content ul li {
-        font-size: 0.95rem; /* Slightly larger text */
-    }
-    .summary-content button {
-        padding: 0.75rem 1.5rem; /* Larger buttons */
-        font-size: 1rem;
-    }
-}
-
-/* Desktop breakpoint: 769px–1200px (min-width: 48.0625rem and max-width: 75rem) */
-@media (min-width: 48.0625rem) { /* min-width: 769px */
-    body {
-        font-size: 0.9375rem; /* Base font size for desktop (15px) */
-    }
-
-    /* --- HERO SECTION --- */
-    .hero-content {
-        padding: 2.5rem;
-    }
-    .hero-content h1 {
-        font-size: 2.2rem;
-    }
-    .hero-content p {
-        font-size: 1.1rem;
-    }
-
-    /* --- PRODUK SECTION --- */
-    #produk {
-        padding: 4rem 2rem;
-    }
-    .produk-slider {
-        padding: 0 50px; /* Original padding */
-    }
-    .produk-item {
-        padding: 1.5rem;
-        width: 17.5rem; /* 280px */
-    }
-    .produk-item img {
-        height: 11.25rem; /* 180px */
-    }
-    .produk-item h3 {
-        font-size: 1.1rem;
-    }
-    .produk-item p {
-        font-size: 1.1rem;
-    }
-    .produk-item button {
-        padding: 0.75rem 1.5rem;
-        font-size: 1rem;
-    }
-    .swiper-button-next, .swiper-button-prev {
+    #produk > h2 {
         font-size: 2.5rem;
     }
+    .produk-item {
+        width: 20rem; /* Larger cards on tablet */
+        padding: 1.8rem;
+    }
+    .produk-item img {
+        height: 12rem;
+    }
+    .produk-item h3 {
+        font-size: 1.3rem;
+    }
+    .produk-item p {
+        font-size: 1.2rem;
+    }
 
-    /* --- PEMBELIAN (FORM) SECTION --- */
+    /* Pembelian Section */
     #pembelian {
-        padding: 4rem 2rem;
+        padding: 6rem 1.5rem;
+    }
+    #pembelian > h2 {
+        font-size: 2.5rem;
     }
     #form-pembelian {
-        max-width: 31.25rem; /* 500px */
-        padding: 0;
+        padding: 2.5rem;
     }
-    #form-pembelian label, 
-    #form-pembelian input, 
-    #form-pembelian textarea,
-    #form-pembelian h3,
-    #pembelian label,
-    #pembelian select {
-        margin-bottom: 0.5rem;
-        font-size: 1rem;
-    }
-    #form-pembelian h3 {
-        font-size: 1.5rem;
-    }
-    #form-pembelian input,
-    #form-pembelian textarea,
-    #pembelian select {
-        padding: 0.5rem;
-        margin-bottom: 1rem;
-        font-size: 1rem;
-    }
-    #form-pembelian button,
-    #pembelian button {
-        padding: 0.75rem;
-        margin-bottom: 0.5rem;
-        font-size: 1rem;
-    }
-    #location-status {
-        font-size: 0.9rem;
-        margin-top: -0.5rem;
-        margin-bottom: 1rem;
-    }
-    hr {
-        margin: 2rem 0;
-    }
-    #price-display {
-        margin-top: 1rem;
-        font-size: 1.2em;
-        margin-bottom: 1rem;
-    }
-
-    /* --- CART ITEMS --- */
     #cart-items {
-        padding: 1rem;
-        margin-top: 1rem;
-    }
-    .cart-item {
-        flex-direction: row;
-        align-items: center;
-        padding: 0.5rem 0;
-        font-size: 1rem;
-    }
-    .cart-item span {
-        margin-bottom: 0;
-    }
-    .cart-item .remove-from-cart {
-        margin-left: 1rem;
-        padding: 0.3rem 0.6rem;
-        font-size: 0.8rem;
+        padding: 2rem;
     }
     #cart-total {
-        font-size: 1.3em;
-        margin-top: 1rem;
-    }
-    #btn-finish-order, #btn-clear-cart {
-        margin-top: 1rem;
+        font-size: 1.6rem;
     }
 
-    /* --- ORDER SUMMARY MODAL for Desktop --- */
+    /* Order Summary Modal */
     .summary-content {
-        width: 70vw; /* Take 70% of viewport width */
-        max-width: 31.25rem; /* 500px - original desktop max-width */
-        padding: 2rem; /* Original padding */
-        padding-bottom: calc(2rem + env(safe-area-inset-bottom));
+        max-width: 600px;
+        padding: 2.5rem;
     }
     .summary-content h2 {
-        font-size: 1.8rem;
+        font-size: 2rem;
     }
     .summary-content h3 {
         font-size: 1.4rem;
     }
-    .summary-content p, .summary-content ul li {
-        font-size: 1rem;
+}
+
+/* Desktop breakpoint */
+@media (min-width: 769px) {
+    body {
+        font-size: 1rem; /* 16px */
     }
-    .summary-content button {
-        padding: 0.75rem 1.5rem;
-        font-size: 1rem;
+
+    h1 { font-size: 3.5rem; }
+    h2 { font-size: 2.8rem; }
+    h3 { font-size: 1.8rem; }
+
+    /* Hero Section */
+    .hero-content h1 {
+        font-size: 4rem;
+    }
+    .hero-content p {
+        font-size: 1.4rem;
+    }
+
+    /* Produk Section */
+    #produk {
+        padding: 8rem 2rem;
+    }
+    #produk > h2 {
+        font-size: 3rem;
+    }
+    .produk-item {
+        width: 22rem; /* Larger cards on desktop */
+        padding: 2rem;
+    }
+    .produk-item img {
+        height: 13rem;
+    }
+    .produk-item h3 {
+        font-size: 1.4rem;
+    }
+    .produk-item p {
+        font-size: 1.3rem;
+    }
+
+    /* Pembelian Section */
+    #pembelian {
+        padding: 8rem 2rem;
+    }
+    #pembelian > h2 {
+        font-size: 3rem;
+    }
+    #form-pembelian {
+        padding: 3rem;
+    }
+    #cart-items {
+        padding: 2.5rem;
+    }
+    .cart-item {
+        padding: 1rem 0;
+    }
+    #cart-total {
+        font-size: 1.8rem;
+    }
+
+    /* Order Summary Modal */
+    .summary-content {
+        max-width: 700px;
+        padding: 3rem;
+    }
+    .summary-content h2 {
+        font-size: 2.2rem;
+    }
+    .summary-content h3 {
+        font-size: 1.5rem;
+    }
+    .summary-content p, .summary-content ul li {
+        font-size: 1.1rem;
     }
 }
 
-/* Large Desktop breakpoint: 1201px and up (min-width: 75.0625rem) */
-@media (min-width: 75.0625rem) { /* min-width: 1201px */
-    body {
-        font-size: 1rem; /* Base font size for large desktop (16px) */
-    }
-
-    /* --- HERO SECTION --- */
+/* Large Desktop breakpoint */
+@media (min-width: 1200px) {
+    /* Hero Section */
     .hero-content h1 {
-        font-size: 2.5rem; /* Larger font for large desktop */
+        font-size: 4.5rem;
     }
-
-    /* --- PRODUK SECTION --- */
-    .produk-item {
-        width: 17.5rem; /* 280px */
-    }
-    .produk-item img {
-        height: 11.25rem; /* 180px */
-    }
-
-    /* --- ORDER SUMMARY MODAL for Large Desktop --- */
-    .summary-content {
-        width: 60vw; /* Adjust width for very large screens */
-        max-width: 31.25rem; /* 500px */
-        padding: 2rem;
-        padding-bottom: calc(2rem + env(safe-area-inset-bottom));
+    .hero-content p {
+        font-size: 1.5rem;
     }
 }
