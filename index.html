@@ -1,111 +1,308 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jual Ayam Potong</title>
+    <title>Ayam Potong Segar - Kualitas Terjamin, Harga Terbaik</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Firebase -->
     <script src="https://www.gstatic.com/firebasejs/12.9.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/12.9.0/firebase-firestore-compat.js"></script>
-    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
-    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <section id="hero">
-        <div class="swiper-container hero-slider">
-            <div class="swiper-wrapper">
-                <div class="swiper-slide" style="background-image: url('web img/bg 1.jpg');">
-                    <div class="hero-content">
-                        <h1>Daging Ayam Segar Pilihan</h1>
-                        <p>Kualitas terbaik langsung dari peternakan, siap diantar ke dapur Anda.</p>
-                        <!-- Tombol CTA opsional bisa ditambahkan di sini, contoh: -->
-                        <!-- <a href="#produk" class="btn btn-primary">Lihat Produk</a> -->
-                    </div>
+
+    <!-- =================================================================
+    HEADER & NAVBAR
+    ================================================================== -->
+    <header class="main-header">
+        <nav class="navbar container">
+            <a href="#" class="nav-logo">
+                <img src="web img/ayam utuh.png" alt="Logo Ayam Potong" class="logo-img">
+                <span class="logo-text">Ayam Segar</span>
+            </a>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="#hero" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="#produk" class="nav-link">Produk</a></li>
+                <li class="nav-item"><a href="#pembelian" class="nav-link">Pesan</a></li>
+                <li class="nav-item"><a href="#kontak" class="nav-link">Kontak</a></li>
+            </ul>
+            <div class="nav-toggle" id="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- =================================================================
+        HERO SECTION
+        ================================================================== -->
+        <section id="hero">
+            <div class="swiper-container hero-slider">
+                <!-- Wrapper for slides -->
+                <div class="swiper-wrapper">
+                    <!-- Slides will be dynamically inserted by script.js -->
                 </div>
-                <div class="swiper-slide" style="background-image: url('web img/bg 2.jpg');">
-                    <div class="hero-content">
-                        <h1>Siap Diolah, Penuh Nutrisi</h1>
-                        <p>Potongan ayam higienis untuk hidangan keluarga sehat Anda.</p>
-                    </div>
+            </div>
+        </section>
+
+        <!-- =================================================================
+        KEUNGGULAN SECTION
+        ================================================================== -->
+        <section id="keunggulan" class="container section">
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="feature-icon"><img src="https://img.icons8.com/ios/50/4CAF50/chicken.png" alt="Ayam Segar"/></div>
+                    <h3 class="feature-title">Potong Harian</h3>
+                    <p class="feature-text">Ayam segar dipotong setiap hari untuk kualitas terbaik.</p>
                 </div>
-                <div class="swiper-slide" style="background-image: url('web img/bg 3.webp');">
-                    <div class="hero-content">
-                        <h1>Pengiriman Cepat & Terpercaya</h1>
-                        <p>Pesan sekarang dan nikmati kesegaran ayam pilihan.</p>
+                <div class="feature-item">
+                    <div class="feature-icon"><img src="https://img.icons8.com/ios/50/4CAF50/certificate.png" alt="Higienis"/></div>
+                    <h3 class="feature-title">Higienis & Halal</h3>
+                    <p class="feature-text">Proses higienis dan dijamin kehalalannya.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon"><img src="https://img.icons8.com/ios/50/4CAF50/delivery--v1.png" alt="Antar Cepat"/></div>
+                    <h3 class="feature-title">Antar Cepat</h3>
+                    <p class="feature-text">Pengiriman cepat di hari yang sama untuk wilayah Anda.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon"><img src="https://img.icons8.com/ios/50/4CAF50/price-tag-euro.png" alt="Harga Grosir"/></div>
+                    <h3 class="feature-title">Harga Terbaik</h3>
+                    <p class="feature-text">Tersedia harga grosir dan eceran yang kompetitif.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- =================================================================
+        PRODUK SECTION
+        ================================================================== -->
+        <section id="produk" class="section">
+            <div class="container">
+                <h2 class="section-title">Produk Populer</h2>
+                <div class="swiper-container produk-slider">
+                    <!-- This wrapper will be filled by script.js -->
+                    <div class="swiper-wrapper">
+                        <!-- Loading Skeleton Placeholders -->
+                        <div class="swiper-slide skeleton-slide">
+                            <div class="produk-item is-loading">
+                                <div class="skeleton skeleton-img"></div>
+                                <div class="skeleton skeleton-title"></div>
+                                <div class="skeleton skeleton-price"></div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide skeleton-slide">
+                            <div class="produk-item is-loading">
+                                <div class="skeleton skeleton-img"></div>
+                                <div class="skeleton skeleton-title"></div>
+                                <div class="skeleton skeleton-price"></div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide skeleton-slide">
+                            <div class="produk-item is-loading">
+                                <div class="skeleton skeleton-img"></div>
+                                <div class="skeleton skeleton-title"></div>
+                                <div class="skeleton skeleton-price"></div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide skeleton-slide">
+                             <div class="produk-item is-loading">
+                                <div class="skeleton skeleton-img"></div>
+                                <div class="skeleton skeleton-title"></div>
+                                <div class="skeleton skeleton-price"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Navigation buttons -->
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =================================================================
+        PEMBELIAN SECTION
+        ================================================================== -->
+        <section id="pembelian" class="section">
+            <div class="container">
+                <h2 class="section-title">Form Pemesanan</h2>
+                <div class="order-container">
+                    <!-- Form and product selection -->
+                    <div class="order-form-wrapper">
+                        <form id="form-pembelian">
+                            <h3 class="form-subtitle">Data Diri</h3>
+                            <div class="form-group">
+                                <label for="nama">Nama Lengkap</label>
+                                <input type="text" id="nama" name="nama" placeholder="Contoh: Budi Santoso" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="no-telp">No. WhatsApp Aktif</label>
+                                <input type="tel" id="no-telp" name="no-telp" placeholder="Contoh: 081234567890" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="location">Alamat Lengkap Pengiriman</label>
+                                <textarea id="location" name="location" rows="3" placeholder="Contoh: Jl. Merdeka No. 10, RT 01/RW 02, Kel. Sukamaju, Kec. Sejahtera, Kota Bahagia, 12345" required></textarea>
+                            </div>
+                            <iframe id="mapPreview" width="100%" height="250" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0" class="hidden"></iframe>
+                        </form>
+
+                        <hr>
+
+                        <div id="product-selection">
+                            <h3 class="form-subtitle">Pilih Produk</h3>
+                             <div class="form-group">
+                                <label for="product-select">Produk</label>
+                                <select id="product-select" name="product-select" required>
+                                    <option value="">-- Pilih Produk --</option>
+                                    <!-- Options filled by JS -->
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="weight-select" id="weight-label" class="hidden">Berat</label>
+                                <select id="weight-select" name="weight-select" class="hidden" required>
+                                    <option value="">-- Pilih Berat --</option>
+                                    <!-- Options filled by JS -->
+                                </select>
+                            </div>
+                            <div id="price-display" class="hidden">
+                                <p>Harga: <span id="current-price">Rp 0</span></p>
+                            </div>
+                            <button type="button" id="btn-add-to-cart" class="btn btn-primary btn-full">
+                                <img src="https://img.icons8.com/ios-filled/24/ffffff/plus-math.png" alt="Tambah"/> Tambah ke Keranjang
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Cart -->
+                    <div class="cart-wrapper">
+                        <h3 class="form-subtitle">Keranjang Belanja</h3>
+                        <div id="cart-items">
+                            <!-- Cart items will be dynamically added here -->
+                            <p class="empty-cart-message">Keranjang masih kosong.</p>
+                        </div>
+                        <div class="cart-summary">
+                            <p>Total Belanja:</p>
+                            <p><strong id="cart-total">Rp 0</strong></p>
+                        </div>
+                        <button type="button" id="btn-finish-order" class="btn btn-primary btn-full" disabled>Lanjut ke Pembayaran</button>
+                        <button type="button" id="btn-clear-cart" class="btn btn-danger btn-full" disabled>Kosongkan Keranjang</button>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-   
+        </section>
 
-    <section id="produk">
-        <h2>Produk Kami</h2>
-        <div class="swiper-container produk-slider">
-            <div class="swiper-wrapper">
+        <!-- =================================================================
+        TESTIMONI SECTION
+        ================================================================== -->
+        <section id="testimoni" class="section">
+             <div class="container">
+                <h2 class="section-title">Apa Kata Pelanggan Kami</h2>
+                 <div class="testimonial-grid">
+                     <div class="testimonial-card">
+                         <p class="testimonial-text">"Ayamnya benar-benar segar dan potongannya pas. Pengirimannya juga cepat banget, pagi pesan siang sudah sampai. Recommended!"</p>
+                         <div class="testimonial-author">
+                             <img src="https://i.pravatar.cc/50?u=a042581f4e29026704d" alt="Ibu Rina">
+                             <div>
+                                 <strong>Ibu Rina</strong>
+                                 <span>Pelanggan Setia</span>
+                             </div>
+                         </div>
+                     </div>
+                     <div class="testimonial-card">
+                         <p class="testimonial-text">"Kualitasnya juara! Dagingnya bersih dan tidak bau. Cocok banget buat stok lauk di rumah. Harganya juga bersaing."</p>
+                         <div class="testimonial-author">
+                             <img src="https://i.pravatar.cc/50?u=a042581f4e29026704e" alt="Bapak Andi">
+                             <div>
+                                 <strong>Bapak Andi</strong>
+                                 <span>Koki Rumahan</span>
+                             </div>
+                         </div>
+                     </div>
+                     <div class="testimonial-card">
+                         <p class="testimonial-text">"Praktis sekali, tidak perlu repot ke pasar. Tinggal pesan dari web, ayam segar langsung diantar ke depan pintu. Mantap!"</p>
+                         <div class="testimonial-author">
+                             <img src="https://i.pravatar.cc/50?u=a042581f4e29026704f" alt="Kak Sarah">
+                             <div>
+                                 <strong>Kak Sarah</strong>
+                                 <span>Ibu Rumah Tangga</span>
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+        </section>
+    </main>
+
+    <!-- =================================================================
+    FOOTER
+    ================================================================== -->
+    <footer id="kontak" class="footer">
+        <div class="container footer-container">
+            <div class="footer-col">
+                <h4 class="footer-title">Ayam Segar</h4>
+                <p>Supplier ayam potong segar, higienis, dan halal untuk kebutuhan rumah tangga dan usaha kuliner Anda. Kualitas adalah prioritas kami.</p>
+            </div>
+            <div class="footer-col">
+                <h4 class="footer-title">Jam Buka</h4>
+                <p>Senin - Sabtu: 06:00 - 15:00</p>
+                <p>Minggu: Libur</p>
+            </div>
+            <div class="footer-col">
+                <h4 class="footer-title">Hubungi Kami</h4>
+                <p><img src="https://img.icons8.com/ios-glyphs/16/ffffff/whatsapp.png" alt="WhatsApp"/> <a href="https://wa.me/6285719480646" target="_blank">0857-1948-0646</a></p>
+                <p>📍 Lokasi: Jakarta, Indonesia</p>
+            </div>
+             <div class="footer-col">
+                <h4 class="footer-title">Ikuti Kami</h4>
+                <div class="social-links">
+                    <a href="#" aria-label="Instagram"><img src="https://img.icons8.com/ios-glyphs/30/ffffff/instagram-new.png" alt="Instagram"/></a>
+                    <a href="#" aria-label="Facebook"><img src="https://img.icons8.com/ios-glyphs/30/ffffff/facebook-new.png" alt="Facebook"/></a>
+                    <a href="#" aria-label="TikTok"><img src="https://img.icons8.com/ios-glyphs/30/ffffff/tiktok.png" alt="TikTok"/></a>
                 </div>
-            <div class="swiper-button-next"></div>
-            <div class="swiper-button-prev"></div>
+            </div>
         </div>
-    </section>
-
-    <section id="pembelian">
-        <h2>Form Pemesanan</h2>
-        <form id="form-pembelian">
-            <label for="nama">Nama:</label>
-            <input type="text" id="nama" name="nama" required>
-            <label for="no-telp">No. Telepon:</label>
-            <input type="tel" id="no-telp" name="no-telp" required>
-            <label for="location">Alamat Lengkap:</label>
-            <input type="text" id="location" name="location" placeholder="Ketik alamat lengkap Anda..." required>
-            <iframe id="mapPreview" width="100%" height="300" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0" class="hidden"></iframe>
-        </form>
-
-        <hr>
-
-        <h2>Daftar Produk</h2>
-        <!-- Product selection moved here for clarity if only one product is available, or can remain above -->
-        <label for="product-select">Pilih Produk:</label>
-        <select id="product-select" name="product-select" required>
-            <option value="">-- Pilih Produk --</option>
-        </select>
-
-        <label for="weight-select" id="weight-label" class="hidden">Pilih Berat:</label>
-        <select id="weight-select" name="weight-select" class="hidden" required>
-            <option value="">-- Pilih Berat --</option>
-        </select>
-
-        <div id="price-display" class="hidden">
-            <p>Harga: <span id="current-price">Rp 0</span></p>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Ayam Segar. All Rights Reserved.</p>
         </div>
-        <button type="button" id="btn-add-to-cart">Tambah ke Keranjang</button>
+    </footer>
 
-        <hr>
 
-        <h2>Keranjang Belanja</h2>
-        <div id="cart-items">
-            <!-- Cart items will be dynamically added here by script.js -->
-            <p>Keranjang kosong.</p>
-        </div>
-        <p><strong>Total Belanja: <span id="cart-total">Rp 0</span></strong></p>
-        <button type="button" id="btn-finish-order" disabled>Selesai</button>
-        <button type="button" id="btn-clear-cart" disabled>Batalkan</button>
-    </section>
-
+    <!-- =================================================================
+    ORDER SUMMARY POPUP
+    ================================================================== -->
     <div id="order-summary" class="hidden">
         <div class="summary-content">
+            <button id="btn-close-summary" class="close-btn">&times;</button>
             <h2>Rincian Pesanan</h2>
-            <p id="summary-nama"></p>
-            <p id="summary-no-telp"></p>
-            <p id="summary-alamat"></p>
-            <p id="summary-lokasi"></p>
+            <div id="summary-details">
+                <p id="summary-nama"></p>
+                <p id="summary-no-telp"></p>
+                <p id="summary-alamat"></p>
+                <p id="summary-lokasi" class="hidden"></p>
+            </div>
             <h3>Produk yang Dipesan:</h3>
             <ul id="summary-produk"></ul>
-            <p id="summary-total"></p>
-            <button id="btn-whatsapp">Lanjutkan pesan via WhatsApp</button>
-            <button id="btn-batal">Batalkan Pesanan</button>
+            <p id="summary-total" class="summary-total-price"></p>
+            <div class="summary-actions">
+                <button id="btn-whatsapp" class="btn btn-whatsapp"><img src="https://img.icons8.com/color/24/ffffff/whatsapp--v1.png" alt="WhatsApp"/> Lanjutkan via WhatsApp</button>
+                <button id="btn-batal" class="btn btn-secondary">Batalkan Pesanan</button>
+            </div>
         </div>
     </div>
-
+    
+    <!-- Scripts -->
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script src="script.js"></script>
 </body>

@@ -14,9 +14,15 @@ const app = firebase.initializeApp(firebaseConfig);
 const db = app.firestore(); // Get Firestore instance
 
 document.addEventListener('DOMContentLoaded', () => {
+    // --- Element Selectors ---
+    // New UI elements
+    const navToggle = document.getElementById('nav-toggle');
+    const navMenu = document.querySelector('.nav-menu');
+    const closeSummaryBtn = document.getElementById('btn-close-summary');
+
+    // Existing elements
     const heroSlider = document.querySelector('.hero-slider .swiper-wrapper');
     const produkSlider = document.querySelector('.produk-slider .swiper-wrapper');
-    const formPembelian = document.getElementById('form-pembelian');
     const orderSummary = document.getElementById('order-summary');
     const summaryNama = document.getElementById('summary-nama');
     const summaryNoTelp = document.getElementById('summary-no-telp');
@@ -40,30 +46,31 @@ document.addEventListener('DOMContentLoaded', () => {
     const btnFinishOrder = document.getElementById('btn-finish-order');
     const btnClearCart = document.getElementById('btn-clear-cart');
 
-    let allProducts = []; // To store products fetched from db.json
-    let cart = []; // Initialize an empty cart for multiple selections
-
-    const nomorPenjual = '6285719480646'; // Ganti dengan nomor WhatsApp penjual Anda
+    // --- State ---
+    let allProducts = [];
+    let cart = [];
+    const nomorPenjual = '6285719480646';
 
     const heroImages = [
-        { url: 'web img/bg 3.webp', title: 'Selamat Datang di Jual Ayam Potong', subtitle: 'Kami menyediakan ayam potong segar dan berkualitas' },
-        { url: 'web img/bg 2.jpg', title: 'Berbagai Macam Pilihan', subtitle: 'Tersedia ayam utuh, dada, paha, dan sayap' },
-        { url: 'web img/bg 1.jpg', title: 'Praktis dan Hemat', subtitle: 'Pesan sekarang, kami antar ke rumah Anda' }
+        { url: 'web img/bg 1.jpg', title: 'Daging Ayam Segar Pilihan', subtitle: 'Kualitas terbaik langsung dari peternakan, siap diantar ke dapur Anda.' },
+        { url: 'web img/bg 2.jpg', title: 'Siap Diolah, Penuh Nutrisi', subtitle: 'Potongan ayam higienis untuk hidangan keluarga sehat Anda.' },
+        { url: 'web img/bg 3.webp', title: 'Pengiriman Cepat & Terpercaya', subtitle: 'Pesan sekarang dan nikmati kesegaran ayam pilihan di hari yang sama.' }
     ];
 
+    // --- Functions ---
     async function fetchProducts() {
         try {
             const productsSnapshot = await db.collection('products').get();
             allProducts = productsSnapshot.docs.map(doc => ({
-                id: doc.id, // Menggunakan ID dokumen Firestore
-                ...doc.data() // Menggabungkan data produk
+                id: doc.id,
+                ...doc.data()
             }));
             renderProdukSlider();
             populateProductSelect();
             updatePriceDisplay();
         } catch (error) {
             console.error('Error fetching products from Firestore:', error);
-            alert('Gagal memuat daftar produk dari Firestore.');
+            produkSlider.innerHTML = '<p class="error-message">Gagal memuat produk. Silakan coba lagi nanti.</p>';
         }
     }
 
@@ -84,34 +91,38 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function renderProdukSlider() {
-        produkSlider.innerHTML = '';
-        allProducts.forEach(p => { // Use allProducts here
+        // Clear existing content (skeletons)
+        produkSlider.innerHTML = ''; 
+
+        allProducts.forEach(p => {
             const slide = document.createElement('div');
             slide.classList.add('swiper-slide');
             slide.innerHTML = `
                 <div class="produk-item">
                     <img src="${p.gambar}" alt="${p.nama}">
-                    <h3>${p.nama}</h3>
-                    <p>Mulai dari Rp ${p.hargaPerKg.toLocaleString('id-ID')}/kg</p>
+                    <div class="produk-content">
+                        <h3>${p.nama}</h3>
+                        <p>Rp ${p.hargaPerKg.toLocaleString('id-ID')}/kg</p>
+                    </div>
                 </div>
             `;
             produkSlider.appendChild(slide);
         });
+        
+        // Update the swiper instance after modifying slides
+        if (produkSwiper) {
+            produkSwiper.update();
+        }
     }
 
     function populateProductSelect() {
         productSelect.innerHTML = '<option value="">-- Pilih Produk --</option>';
-        allProducts.forEach(p => { // Use allProducts here
+        allProducts.forEach(p => {
             const option = document.createElement('option');
             option.value = p.id;
             option.textContent = p.nama;
             productSelect.appendChild(option);
         });
-        // Pre-select the first product if available
-        if (allProducts.length > 0) {
-            productSelect.value = allProducts[0].id;
-            populateWeightSelect();
-        }
     }
 
     function populateWeightSelect() {
@@ -121,10 +132,7 @@ document.addEventListener('DOMContentLoaded', () => {
             for (let i = 0.25; i <= 5; i += 0.25) {
                 const option = document.createElement('option');
                 option.value = i;
-                option.textContent = `${i * 1000} gram`;
-                if (i >= 1) {
-                    option.textContent = `${i} kg`;
-                }
+                option.textContent = i < 1 ? `${i * 1000} gram` : `${i} kg`;
                 weightSelect.appendChild(option);
             }
             weightLabel.classList.remove('hidden');
@@ -142,7 +150,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const selectedWeightKg = parseFloat(weightSelect.value);
 
         if (selectedProductId && !isNaN(selectedWeightKg) && selectedWeightKg > 0) {
-            const selectedProduct = allProducts.find(p => p.id == selectedProductId); // Use allProducts
+            const selectedProduct = allProducts.find(p => p.id == selectedProductId);
             if (selectedProduct) {
                 const totalPrice = selectedProduct.hargaPerKg * selectedWeightKg;
                 currentPrice.textContent = `Rp ${totalPrice.toLocaleString('id-ID')}`;
@@ -161,7 +169,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let totalCartPrice = 0;
 
         if (cart.length === 0) {
-            cartItemsDiv.innerHTML = '<p>Keranjang kosong.</p>';
+            cartItemsDiv.innerHTML = '<p class="empty-cart-message">Keranjang masih kosong.</p>';
             btnFinishOrder.disabled = true;
             btnClearCart.disabled = true;
         } else {
@@ -190,37 +198,61 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        const selectedProduct = allProducts.find(p => p.id == selectedProductId); // Use allProducts
+        const selectedProduct = allProducts.find(p => p.id == selectedProductId);
         if (!selectedProduct) {
             alert('Produk tidak valid.');
             return;
         }
 
         const itemPrice = selectedProduct.hargaPerKg * selectedWeightKg;
-        const newItem = {
+        cart.push({
             id: selectedProduct.id,
             nama: selectedProduct.nama,
             weight: selectedWeightKg,
             price: itemPrice
-        };
-        cart.push(newItem);
+        });
         renderCart();
+        // Optional: show a confirmation
+        alert(`${selectedProduct.nama} telah ditambahkan ke keranjang.`);
     }
 
     function removeFromCart(index) {
         cart.splice(index, 1);
         renderCart();
     }
+    
+    function closeOrderSummary() {
+        orderSummary.classList.add('hidden');
+        document.body.classList.remove('modal-open');
+    }
+    
+    function openOrderSummary() {
+        orderSummary.classList.remove('hidden');
+        document.body.classList.add('modal-open');
+    }
 
-    productSelect.addEventListener('change', populateWeightSelect);
+    // --- Event Listeners ---
+    // New UI Listeners
+    navToggle.addEventListener('click', () => {
+        navMenu.classList.toggle('active');
+        navToggle.classList.toggle('active');
+    });
+
+    closeSummaryBtn.addEventListener('click', closeOrderSummary);
+    btnBatal.addEventListener('click', closeOrderSummary);
+
+    // Existing Listeners
+    productSelect.addEventListener('change', () => {
+        populateWeightSelect();
+        updatePriceDisplay();
+    });
     weightSelect.addEventListener('change', updatePriceDisplay);
     btnAddToCart.addEventListener('click', addToCart);
 
     locationInput.addEventListener('input', () => {
         const alamat = locationInput.value.trim();
         if (alamat.length > 5) {
-            const mapURL = `https://www.google.com/maps?q=${encodeURIComponent(alamat)}&output=embed`;
-            mapPreview.src = mapURL;
+            mapPreview.src = `https://www.google.com/maps?q=${encodeURIComponent(alamat)}&output=embed`;
             mapPreview.classList.remove('hidden');
         } else {
             mapPreview.classList.add('hidden');
@@ -230,8 +262,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     cartItemsDiv.addEventListener('click', (e) => {
         if (e.target.classList.contains('remove-from-cart')) {
-            const indexToRemove = parseInt(e.target.dataset.index);
-            removeFromCart(indexToRemove);
+            removeFromCart(parseInt(e.target.dataset.index));
         }
     });
 
@@ -265,69 +296,47 @@ document.addEventListener('DOMContentLoaded', () => {
 
         summaryTotal.textContent = `Total Belanja: Rp ${totalOrderPrice.toLocaleString('id-ID')}`;
 
+        // Save data to dataset for WhatsApp
         orderSummary.dataset.nama = nama;
         orderSummary.dataset.noTelp = noTelp;
         orderSummary.dataset.alamat = alamat;
-        orderSummary.dataset.lokasi = alamat;
         orderSummary.dataset.pesanan = JSON.stringify(cart);
         orderSummary.dataset.totalHarga = totalOrderPrice;
 
         const orderData = {
             date: new Date().toISOString(),
-            customer: {
-                nama: nama,
-                noTelp: noTelp,
-                alamat: alamat,
-                lokasi: alamat
-            },
+            customer: { nama, noTelp, alamat },
             items: cart,
             total: totalOrderPrice,
             status: 'pending'
         };
 
-
-
         try {
-            const docRef = await db.collection('orders').add(orderData);
-            console.log('Order saved to Firestore with ID:', docRef.id);
+            await db.collection('orders').add(orderData);
+            openOrderSummary();
         } catch (error) {
             console.error('Error saving order to Firestore:', error);
-            alert('Terjadi kesalahan saat menyimpan pesanan ke database.');
+            alert('Terjadi kesalahan saat menyimpan pesanan. Silakan coba lagi.');
         }
-
-        orderSummary.classList.remove('hidden');
-        document.body.classList.add('modal-open');
     });
 
     btnClearCart.addEventListener('click', () => {
-        cart = [];
-        renderCart();
-        alert('Keranjang belanja telah dikosongkan.');
-    });
-
-    btnBatal.addEventListener('click', () => {
-        orderSummary.classList.add('hidden');
-        document.body.classList.remove('modal-open');
+        if (confirm('Anda yakin ingin mengosongkan keranjang?')) {
+            cart = [];
+            renderCart();
+        }
     });
 
     btnWhatsapp.addEventListener('click', () => {
-        const nama = orderSummary.dataset.nama;
-        const noTelp = orderSummary.dataset.noTelp;
-        const alamat = orderSummary.dataset.alamat;
-        const lokasiText = orderSummary.dataset.lokasi;
-        const pesanan = JSON.parse(orderSummary.dataset.pesanan);
-        const totalHarga = orderSummary.dataset.totalHarga;
+        const { nama, noTelp, alamat, pesanan, totalHarga } = orderSummary.dataset;
+        const parsedPesanan = JSON.parse(pesanan);
 
         let pesanWhatsApp = `Halo, saya ingin memesan ayam potong:\n\n`;
         pesanWhatsApp += `*Nama:* ${nama}\n`;
         pesanWhatsApp += `*No. Telepon:* ${noTelp}\n`;
-        pesanWhatsApp += `*Alamat Pengiriman:* ${alamat}\n`;
-        if (lokasiText) {
-            const mapsLink = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(lokasiText)}`;
-            pesanWhatsApp += `*Tautan Peta:* ${mapsLink}\n`;
-        }
-        pesanWhatsApp += `\n*Pesanan:*\n`;
-        pesanan.forEach(item => {
+        pesanWhatsApp += `*Alamat Pengiriman:* ${alamat}\n\n`;
+        pesanWhatsApp += `*Pesanan:*\n`;
+        parsedPesanan.forEach(item => {
             pesanWhatsApp += `- ${item.nama} (${item.weight} kg) - Rp ${item.price.toLocaleString('id-ID')}\n`;
         });
         pesanWhatsApp += `\n*Total Pembayaran:* Rp ${parseInt(totalHarga).toLocaleString('id-ID')}`;
@@ -335,16 +344,17 @@ document.addEventListener('DOMContentLoaded', () => {
         const urlWhatsApp = `https://wa.me/${nomorPenjual}?text=${encodeURIComponent(pesanWhatsApp)}`;
         
         window.open(urlWhatsApp, '_blank');
-        orderSummary.classList.add('hidden');
-        document.body.classList.remove('modal-open');
+        closeOrderSummary();
     });
 
-    renderHeroSlider(); // Render hero slider immediately
-    fetchProducts(); // Fetch products and then render product slider and populate selects
-    renderCart(); // Initial render of the cart
+    // --- Initializations ---
+    renderHeroSlider();
+    fetchProducts();
+    renderCart();
 
     const heroSwiper = new Swiper('.hero-slider', {
         loop: true,
+        effect: 'fade',
         autoplay: {
             delay: 4000,
             disableOnInteraction: false,
@@ -353,24 +363,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const produkSwiper = new Swiper('.produk-slider', {
         slidesPerView: 1,
-        spaceBetween: 30,
+        spaceBetween: 16,
         navigation: {
             nextEl: '.swiper-button-next',
             prevEl: '.swiper-button-prev',
         },
         breakpoints: {
-            640: {
-                slidesPerView: 2,
-                spaceBetween: 20,
-            },
-            768: {
-                slidesPerView: 2,
-                spaceBetween: 30,
-            },
-            1024: {
-                slidesPerView: 3,
-                spaceBetween: 40,
-            },
+            576: { slidesPerView: 2, spaceBetween: 20 },
+            768: { slidesPerView: 3, spaceBetween: 30 },
+            1024: { slidesPerView: 4, spaceBetween: 30 },
         },
     });
 });
