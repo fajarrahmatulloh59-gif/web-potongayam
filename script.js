@@ -18,6 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // New UI elements
     const navToggle = document.getElementById('nav-toggle');
     const navMenu = document.querySelector('.nav-menu');
+    const navLinks = document.querySelectorAll('.nav-link');
     const closeSummaryBtn = document.getElementById('btn-close-summary');
 
     // Existing elements
@@ -231,11 +232,20 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.classList.add('modal-open');
     }
 
+    function closeMenu() {
+        navMenu.classList.remove('active');
+        navToggle.classList.remove('active');
+    }
+
     // --- Event Listeners ---
     // New UI Listeners
     navToggle.addEventListener('click', () => {
         navMenu.classList.toggle('active');
         navToggle.classList.toggle('active');
+    });
+
+    navLinks.forEach(link => {
+        link.addEventListener('click', closeMenu);
     });
 
     closeSummaryBtn.addEventListener('click', closeOrderSummary);

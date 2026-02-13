@@ -801,8 +801,8 @@ hr {
     .nav-menu {
         position: fixed;
         top: 5rem; /* Height of navbar */
-        left: -100%;
-        width: 100%;
+        left: -80%;
+        width: 80%;
         height: calc(100vh - 5rem);
         background-color: var(--color-surface);
         flex-direction: column;
@@ -811,6 +811,7 @@ hr {
         gap: 3rem;
         transition: var(--transition);
         z-index: 999;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
     }
     .nav-menu.active { left: 0; }
 
